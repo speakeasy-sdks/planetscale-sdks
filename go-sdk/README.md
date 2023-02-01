@@ -1,4 +1,4 @@
-# github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk
+# Planetscale Go SDK
 
 <!-- Start SDK Installation -->
 ## SDK Installation

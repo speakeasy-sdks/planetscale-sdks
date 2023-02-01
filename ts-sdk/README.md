@@ -1,4 +1,4 @@
-# @planetscale/sdk
+# Planetscale Node SDK
 
 <!-- Start SDK Installation -->
 ## SDK Installation
