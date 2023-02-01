@@ -1,4 +1,4 @@
-# Planetscale Python SDKs
+# Planetscale SDKs
 
 SDKs for the [Planetscale API](https://api-docs.planetscale.com/reference/getting-started-with-planetscale-api). Planetscale is the world's most advanced serverless MySQL platform. You can use the PlanetScale API to manage your PlanetScale databases programmatically. The PlanetScale API is currently in **beta**.
 
