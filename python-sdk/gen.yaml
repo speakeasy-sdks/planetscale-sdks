@@ -1,5 +1,9 @@
+management:
+    openapi-checksum: 530c8f8ed54d556463a9470393308776
+    openapi-version: v1
+    speakeasy-version: 0.21.3
 python:
-    version: 1.0.0
+    version: 1.1.0
     packagename: planetscale
     author: planetscale
 sdkclassname: PlanetscaleAPI
