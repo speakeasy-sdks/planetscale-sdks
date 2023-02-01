@@ -116,7 +116,7 @@
           "Organizations"
         ],
         "summary": "Get an organization",
-        "description": "\n### Authorization\nA   OAuth token must have the following   scopes in order to use this API endpoint:\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| User | `read_organizations` |\n| Organization | `read_organization` |",
+        "description": "\n### Authorization\nA OAuth token must have the following scopes in order to use this API endpoint:\n\n**OAuth Scopes**\n\n | Resource | Scopes |\n| :------- | :---------- |\n| User | `read_organizations` |\n| Organization | `read_organization` |",
         "operationId": "get-an-organization",
         "parameters": [
           {
