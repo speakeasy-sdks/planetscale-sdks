@@ -3,8 +3,8 @@ package planetscale
 import (
 	"net/http"
 
-	"github.com/speakeasy-sdks/orb-sdks/go-client-sdk/pkg/models/shared"
-	"github.com/speakeasy-sdks/orb-sdks/go-client-sdk/pkg/utils"
+	"github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/pkg/models/shared"
+	"github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/pkg/utils"
 )
 
 var ServerList = []string{
@@ -61,7 +61,7 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *Planetscale {
 	sdk := &Planetscale{
 		_language:   "go",
-		_sdkVersion: "1.1.0",
+		_sdkVersion: "1.1.1",
 		_genVersion: "0.21.3",
 	}
 	for _, opt := range opts {
