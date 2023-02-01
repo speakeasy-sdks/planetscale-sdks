@@ -1,0 +1,5 @@
+typescript:
+    version: 1.0.0
+    packagename: '@planetscale/sdk'
+    author: planetscale
+sdkclassname: PlanetscaleAPI
