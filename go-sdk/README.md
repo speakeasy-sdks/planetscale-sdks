@@ -1,4 +1,4 @@
-# github.com/speakeasy-sdks/orb-sdks/go-client-sdk
+# github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk
 
 <!-- Start SDK Installation -->
 ## SDK Installation
