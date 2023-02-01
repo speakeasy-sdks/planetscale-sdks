@@ -3,8 +3,8 @@ package planetscale
 import (
 	"context"
 	"fmt"
-	"github.com/speakeasy-sdks/orb-sdks/go-client-sdk/pkg/models/operations"
-	"github.com/speakeasy-sdks/orb-sdks/go-client-sdk/pkg/utils"
+	"github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/pkg/models/operations"
+	"github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/pkg/utils"
 	"net/http"
 	"strings"
 )
@@ -32,7 +32,7 @@ func NewOrganizations(defaultClient, securityClient HTTPClient, serverURL, langu
 // GetAnOrganization - Get an organization
 //
 // ### Authorization
-// A   OAuth token must have the following   scopes in order to use this API endpoint:
+// A OAuth token must have the following scopes in order to use this API endpoint:
 //
 // **OAuth Scopes**
 //

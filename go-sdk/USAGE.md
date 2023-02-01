@@ -3,9 +3,9 @@
 package main
 
 import (
-    "github.com/speakeasy-sdks/orb-sdks/go-client-sdk"
-    "github.com/speakeasy-sdks/orb-sdks/go-client-sdk/pkg/models/shared"
-    "github.com/speakeasy-sdks/orb-sdks/go-client-sdk/pkg/models/operations"
+    "github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk"
+    "github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/pkg/models/shared"
+    "github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/pkg/models/operations"
 )
 
 func main() {

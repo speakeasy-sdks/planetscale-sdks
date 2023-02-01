@@ -24,7 +24,7 @@ export class Organizations {
    *
    * 
    * ### Authorization
-   * A   OAuth token must have the following   scopes in order to use this API endpoint:
+   * A OAuth token must have the following scopes in order to use this API endpoint:
    * 
    * **OAuth Scopes**
    * 
