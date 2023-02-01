@@ -9,6 +9,18 @@ Please see instructions on fetching from package managers for each language spec
 
 <!-- End SDK Installation -->
 
+## Authentication
+
+Before making your first API call, set up the proper authentication for the PlanetScale API using the Authorization header. There are two API authentication types: Service tokens and OAuth.
+
+### Service tokens
+Most endpoints only need a service token for authentication, but some organization-specific endpoints also need OAuth. Each endpoint will state what types of authentication are allowed. See the Service tokens documentation for creating a service token and making your first API call with the PlanetScale API.
+
+### OAuth applications
+All OAuth applications have a comprehensive list of scopes that the application can request from the PlanetScale user. See the OAuth documentation for more info.
+
+OAuth applications are currently in limited beta. If you are interested in building on top of PlanetScale and allowing your users to authenticate with PlanetScale to gain management access to their organizations and databases, sign up for the limited beta in your PlanetScale organization's Settings > Beta features page. Our team will reach out with more information.
+
 ## SDK Example Usage
 
 Please see example usage for each language specific SDK. Here is an example for Typescript.
