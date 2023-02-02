@@ -41,8 +41,8 @@ export class PlanetscaleApi {
   public _securityClient: AxiosInstance;
   public _serverURL: string;
   private _language = "typescript";
-  private _sdkVersion = "1.1.1";
-  private _genVersion = "0.21.3";
+  private _sdkVersion = "1.2.0";
+  private _genVersion = "0.22.0";
 
   constructor(props: SDKProps) {
     this._serverURL = props.serverUrl ?? ServerList[0];
