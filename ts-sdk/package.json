@@ -1,6 +1,6 @@
 {
   "name": "@planetscale/sdk",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "planetscale",
   "scripts": {
     "prepare": "tsc --build"
