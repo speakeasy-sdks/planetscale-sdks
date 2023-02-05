@@ -1,5 +1,4 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 
 
 export class CancelOrDenyADemotionRequestPathParams extends SpeakeasyBase {
@@ -13,12 +12,10 @@ export class CancelOrDenyADemotionRequestPathParams extends SpeakeasyBase {
   organization: string;
 }
 
-
 export class CancelOrDenyADemotionRequestRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   pathParams: CancelOrDenyADemotionRequestPathParams;
 }
-
 
 export class CancelOrDenyADemotionRequestResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

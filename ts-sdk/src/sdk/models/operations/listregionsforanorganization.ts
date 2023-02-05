@@ -1,12 +1,10 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 
 
 export class ListRegionsForAnOrganizationPathParams extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=name" })
   name: string;
 }
-
 
 export class ListRegionsForAnOrganizationQueryParams extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=page" })
@@ -16,7 +14,6 @@ export class ListRegionsForAnOrganizationQueryParams extends SpeakeasyBase {
   perPage?: number;
 }
 
-
 export class ListRegionsForAnOrganizationRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   pathParams: ListRegionsForAnOrganizationPathParams;
@@ -24,7 +21,6 @@ export class ListRegionsForAnOrganizationRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   queryParams: ListRegionsForAnOrganizationQueryParams;
 }
-
 
 export class ListRegionsForAnOrganizationResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

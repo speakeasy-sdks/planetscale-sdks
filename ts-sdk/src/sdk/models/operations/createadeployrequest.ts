@@ -1,5 +1,4 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 
 
 export class CreateADeployRequestPathParams extends SpeakeasyBase {
@@ -9,7 +8,6 @@ export class CreateADeployRequestPathParams extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=organization" })
   organization: string;
 }
-
 
 export class CreateADeployRequestRequestBody extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "json, name=branch" })
@@ -25,7 +23,6 @@ export class CreateADeployRequestRequestBody extends SpeakeasyBase {
   number?: string;
 }
 
-
 export class CreateADeployRequestRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   pathParams: CreateADeployRequestPathParams;
@@ -33,7 +30,6 @@ export class CreateADeployRequestRequest extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "request, media_type=application/json" })
   request?: CreateADeployRequestRequestBody;
 }
-
 
 export class CreateADeployRequestResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

@@ -31,3 +31,11 @@ Based on:
 - Speakeasy CLI 0.22.1 https://github.com/speakeasy-api/speakeasy
 ### Releases
 - [Go v1.2.1] https://github.com/speakeasy-sdks/planetscale-sdks/releases/tag/v1.2.1 - ./go-sdk/
+
+## Version 2.0.0
+### Changes
+Based on:
+- OpenAPI Doc v1 openapi.json
+- Speakeasy CLI 1.0.0 https://github.com/speakeasy-api/speakeasy
+### Releases
+- [Go v2.0.0] https://github.com/speakeasy-sdks/planetscale-sdks/releases/tag/v2.0.0 - ./go-sdk/

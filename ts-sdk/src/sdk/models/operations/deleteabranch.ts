@@ -1,5 +1,4 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 
 
 export class DeleteABranchPathParams extends SpeakeasyBase {
@@ -13,12 +12,10 @@ export class DeleteABranchPathParams extends SpeakeasyBase {
   organization: string;
 }
 
-
 export class DeleteABranchRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   pathParams: DeleteABranchPathParams;
 }
-
 
 export class DeleteABranchResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

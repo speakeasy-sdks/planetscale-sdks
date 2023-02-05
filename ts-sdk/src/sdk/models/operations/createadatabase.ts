@@ -1,12 +1,10 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 
 
 export class CreateADatabasePathParams extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=organization" })
   organization: string;
 }
-
 
 export class CreateADatabaseRequestBody extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "json, name=name" })
@@ -16,7 +14,6 @@ export class CreateADatabaseRequestBody extends SpeakeasyBase {
   notes?: string;
 }
 
-
 export class CreateADatabaseRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   pathParams: CreateADatabasePathParams;
@@ -24,7 +21,6 @@ export class CreateADatabaseRequest extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "request, media_type=application/json" })
   request?: CreateADatabaseRequestBody;
 }
-
 
 export class CreateADatabaseResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

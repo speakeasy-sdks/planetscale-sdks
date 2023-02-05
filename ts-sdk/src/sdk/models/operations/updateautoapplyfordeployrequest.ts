@@ -1,5 +1,4 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 
 
 export class UpdateAutoApplyForDeployRequestPathParams extends SpeakeasyBase {
@@ -13,12 +12,10 @@ export class UpdateAutoApplyForDeployRequestPathParams extends SpeakeasyBase {
   organization: string;
 }
 
-
 export class UpdateAutoApplyForDeployRequestRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   pathParams: UpdateAutoApplyForDeployRequestPathParams;
 }
-
 
 export class UpdateAutoApplyForDeployRequestResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

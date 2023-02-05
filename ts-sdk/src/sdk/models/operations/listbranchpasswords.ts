@@ -1,5 +1,4 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 
 
 export class ListBranchPasswordsPathParams extends SpeakeasyBase {
@@ -13,7 +12,6 @@ export class ListBranchPasswordsPathParams extends SpeakeasyBase {
   organization: string;
 }
 
-
 export class ListBranchPasswordsQueryParams extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=page" })
   page?: number;
@@ -25,7 +23,6 @@ export class ListBranchPasswordsQueryParams extends SpeakeasyBase {
   readOnlyRegionId?: string;
 }
 
-
 export class ListBranchPasswordsRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   pathParams: ListBranchPasswordsPathParams;
@@ -33,7 +30,6 @@ export class ListBranchPasswordsRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   queryParams: ListBranchPasswordsQueryParams;
 }
-
 
 export class ListBranchPasswordsResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

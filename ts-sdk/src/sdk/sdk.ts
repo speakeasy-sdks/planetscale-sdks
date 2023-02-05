@@ -1,16 +1,14 @@
-import axios, { AxiosInstance } from "axios";
 import * as utils from "../internal/utils";
-import { Security } from "./models/shared";
-
-import { DatabaseBranchPasswords } from "./databasebranchpasswords";
 import { DatabaseBranches } from "./databasebranches";
+import { DatabaseBranchPasswords } from "./databasebranchpasswords";
 import { Databases } from "./databases";
 import { DeployRequests } from "./deployrequests";
+import { Security } from "./models/shared";
 import { OAuthApplications } from "./oauthapplications";
 import { OAuthTokens } from "./oauthtokens";
 import { Organizations } from "./organizations";
 import { Users } from "./users";
-
+import axios, { AxiosInstance } from "axios";
 
 export const ServerList = [
 	"https://api.planetscale.com/v1",
@@ -27,7 +25,7 @@ export type SDKProps = {
 }
 
 
-export class PlanetscaleApi {
+export class PlanetscaleAPI {
   public databaseBranchPasswords: DatabaseBranchPasswords;
   public databaseBranches: DatabaseBranches;
   public databases: Databases;
@@ -41,8 +39,8 @@ export class PlanetscaleApi {
   public _securityClient: AxiosInstance;
   public _serverURL: string;
   private _language = "typescript";
-  private _sdkVersion = "1.2.1";
-  private _genVersion = "0.22.1";
+  private _sdkVersion = "2.0.0";
+  private _genVersion = "1.0.0";
 
   constructor(props: SDKProps) {
     this._serverURL = props.serverUrl ?? ServerList[0];
@@ -132,4 +130,5 @@ export class PlanetscaleApi {
       this._genVersion
     );
   }
+  
 }

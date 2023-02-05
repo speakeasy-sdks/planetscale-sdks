@@ -1,5 +1,4 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 
 
 export class CreateOrRenewAnOauthTokenPathParams extends SpeakeasyBase {
@@ -9,12 +8,10 @@ export class CreateOrRenewAnOauthTokenPathParams extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=organization" })
   organization: string;
 }
-
 export enum CreateOrRenewAnOauthTokenRequestBodyGrantTypeEnum {
     AuthorizationCode = "authorization_code",
     RefreshToken = "refresh_token"
 }
-
 
 export class CreateOrRenewAnOauthTokenRequestBody extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "json, name=client_id" })
@@ -36,7 +33,6 @@ export class CreateOrRenewAnOauthTokenRequestBody extends SpeakeasyBase {
   refreshToken?: string;
 }
 
-
 export class CreateOrRenewAnOauthTokenRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   pathParams: CreateOrRenewAnOauthTokenPathParams;
@@ -44,7 +40,6 @@ export class CreateOrRenewAnOauthTokenRequest extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "request, media_type=application/json" })
   request?: CreateOrRenewAnOauthTokenRequestBody;
 }
-
 
 export class CreateOrRenewAnOauthTokenResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

@@ -1,5 +1,4 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 
 
 export class ListBranchesPathParams extends SpeakeasyBase {
@@ -10,7 +9,6 @@ export class ListBranchesPathParams extends SpeakeasyBase {
   organization: string;
 }
 
-
 export class ListBranchesQueryParams extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=page" })
   page?: number;
@@ -19,7 +17,6 @@ export class ListBranchesQueryParams extends SpeakeasyBase {
   perPage?: number;
 }
 
-
 export class ListBranchesRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   pathParams: ListBranchesPathParams;
@@ -27,7 +24,6 @@ export class ListBranchesRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   queryParams: ListBranchesQueryParams;
 }
-
 
 export class ListBranchesResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

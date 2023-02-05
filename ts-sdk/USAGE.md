@@ -1,10 +1,10 @@
 <!-- Start SDK Example Usage -->
 ```typescript
-import { PlanetscaleApi, withSecurity} from "@planetscale/sdk";
+import { PlanetscaleAPI, withSecurity} from "@planetscale/sdk";
 import { CreateABranchPasswordRequest, CreateABranchPasswordResponse } from "@planetscale/sdk/src/sdk/models/operations";
 import { AxiosError } from "axios";
 
-const sdk = new PlanetscaleApi(withSecurity(
+const sdk = new PlanetscaleAPI(withSecurity(
   security: {
     apiKeyHeader: {
       apiKey: "YOUR_API_KEY_HERE",
@@ -14,14 +14,14 @@ const sdk = new PlanetscaleApi(withSecurity(
     
 const req: CreateABranchPasswordRequest = {
   pathParams: {
-    branch: "sit",
-    database: "voluptas",
-    organization: "culpa",
+    branch: "unde",
+    database: "deserunt",
+    organization: "porro",
   },
   request: {
-    readOnlyRegionId: "expedita",
+    readOnlyRegionId: "nulla",
     role: "readwriter",
-    ttl: 96.199997,
+    ttl: 8579.46,
   },
 };
 

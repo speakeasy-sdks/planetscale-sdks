@@ -1,12 +1,10 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 
 
 export class ListDatabasesPathParams extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=organization" })
   organization: string;
 }
-
 
 export class ListDatabasesQueryParams extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=page" })
@@ -16,7 +14,6 @@ export class ListDatabasesQueryParams extends SpeakeasyBase {
   perPage?: number;
 }
 
-
 export class ListDatabasesRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   pathParams: ListDatabasesPathParams;
@@ -24,7 +21,6 @@ export class ListDatabasesRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   queryParams: ListDatabasesQueryParams;
 }
-
 
 export class ListDatabasesResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

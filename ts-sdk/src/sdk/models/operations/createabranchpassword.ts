@@ -1,5 +1,4 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 
 
 export class CreateABranchPasswordPathParams extends SpeakeasyBase {
@@ -12,14 +11,12 @@ export class CreateABranchPasswordPathParams extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=organization" })
   organization: string;
 }
-
 export enum CreateABranchPasswordRequestBodyRoleEnum {
     Reader = "reader",
     Writer = "writer",
     Admin = "admin",
     Readwriter = "readwriter"
 }
-
 
 export class CreateABranchPasswordRequestBody extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "json, name=read_only_region_id" })
@@ -32,7 +29,6 @@ export class CreateABranchPasswordRequestBody extends SpeakeasyBase {
   ttl?: number;
 }
 
-
 export class CreateABranchPasswordRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   pathParams: CreateABranchPasswordPathParams;
@@ -40,7 +36,6 @@ export class CreateABranchPasswordRequest extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "request, media_type=application/json" })
   request?: CreateABranchPasswordRequestBody;
 }
-
 
 export class CreateABranchPasswordResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

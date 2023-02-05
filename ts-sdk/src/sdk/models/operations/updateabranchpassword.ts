@@ -1,5 +1,4 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 
 
 export class UpdateABranchPasswordPathParams extends SpeakeasyBase {
@@ -16,7 +15,6 @@ export class UpdateABranchPasswordPathParams extends SpeakeasyBase {
   organization: string;
 }
 
-
 export class UpdateABranchPasswordRequestBody extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "json, name=display_name" })
   displayName: string;
@@ -25,7 +23,6 @@ export class UpdateABranchPasswordRequestBody extends SpeakeasyBase {
   readOnlyRegionId?: string;
 }
 
-
 export class UpdateABranchPasswordRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   pathParams: UpdateABranchPasswordPathParams;
@@ -33,7 +30,6 @@ export class UpdateABranchPasswordRequest extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "request, media_type=application/json" })
   request?: UpdateABranchPasswordRequestBody;
 }
-
 
 export class UpdateABranchPasswordResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

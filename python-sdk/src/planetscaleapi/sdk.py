@@ -1,9 +1,6 @@
 
-
 import requests
-from planetscaleapi.models import shared
 from . import utils
-
 from .database_branch_passwords import DatabaseBranchPasswords
 from .database_branches import DatabaseBranches
 from .databases import Databases
@@ -12,7 +9,7 @@ from .oauth_applications import OAuthApplications
 from .oauth_tokens import OAuthTokens
 from .organizations import Organizations
 from .users import Users
-
+from planetscaleapi.models import shared
 
 SERVERS = [
 	"https://api.planetscale.com/v1",
@@ -35,8 +32,8 @@ class PlanetscaleAPI:
     _security: shared.Security
     _server_url: str = SERVERS[0]
     _language: str = "python"
-    _sdk_version: str = "1.2.1"
-    _gen_version: str = "0.22.1"
+    _sdk_version: str = "2.0.0"
+    _gen_version: str = "1.0.0"
 
     def __init__(self) -> None:
         self._client = requests.Session()

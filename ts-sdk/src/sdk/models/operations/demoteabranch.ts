@@ -1,5 +1,4 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 
 
 export class DemoteABranchPathParams extends SpeakeasyBase {
@@ -13,12 +12,10 @@ export class DemoteABranchPathParams extends SpeakeasyBase {
   organization: number;
 }
 
-
 export class DemoteABranchRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   pathParams: DemoteABranchPathParams;
 }
-
 
 export class DemoteABranchResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

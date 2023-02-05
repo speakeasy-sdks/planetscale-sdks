@@ -23,14 +23,14 @@ func main() {
     
     req := operations.CreateABranchPasswordRequest{
         PathParams: operations.CreateABranchPasswordPathParams{
-            Branch: "sit",
-            Database: "voluptas",
-            Organization: "culpa",
+            Branch: "unde",
+            Database: "deserunt",
+            Organization: "porro",
         },
         Request: &operations.CreateABranchPasswordRequestBody{
-            ReadOnlyRegionID: "expedita",
+            ReadOnlyRegionID: "nulla",
             Role: "readwriter",
-            TTL: 96.199997,
+            TTL: 8579.46,
         },
     }
     

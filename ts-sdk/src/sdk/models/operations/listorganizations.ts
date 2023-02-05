@@ -1,5 +1,4 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 
 
 export class ListOrganizationsQueryParams extends SpeakeasyBase {
@@ -10,12 +9,10 @@ export class ListOrganizationsQueryParams extends SpeakeasyBase {
   perPage?: number;
 }
 
-
 export class ListOrganizationsRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   queryParams: ListOrganizationsQueryParams;
 }
-
 
 export class ListOrganizationsResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

@@ -1,5 +1,4 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 
 
 export class QueueADeployRequestPathParams extends SpeakeasyBase {
@@ -13,12 +12,10 @@ export class QueueADeployRequestPathParams extends SpeakeasyBase {
   organization: string;
 }
 
-
 export class QueueADeployRequestRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   pathParams: QueueADeployRequestPathParams;
 }
-
 
 export class QueueADeployRequestResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

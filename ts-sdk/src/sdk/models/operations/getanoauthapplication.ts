@@ -1,5 +1,4 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 
 
 export class GetAnOauthApplicationPathParams extends SpeakeasyBase {
@@ -10,12 +9,10 @@ export class GetAnOauthApplicationPathParams extends SpeakeasyBase {
   organization: string;
 }
 
-
 export class GetAnOauthApplicationRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   pathParams: GetAnOauthApplicationPathParams;
 }
-
 
 export class GetAnOauthApplicationResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

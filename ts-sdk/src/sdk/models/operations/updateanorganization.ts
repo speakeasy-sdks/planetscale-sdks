@@ -1,12 +1,10 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 
 
 export class UpdateAnOrganizationPathParams extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=name" })
   name: string;
 }
-
 
 export class UpdateAnOrganizationRequestBody extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "json, name=billing_email" })
@@ -16,7 +14,6 @@ export class UpdateAnOrganizationRequestBody extends SpeakeasyBase {
   requireAdminForProductionAccess?: boolean;
 }
 
-
 export class UpdateAnOrganizationRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   pathParams: UpdateAnOrganizationPathParams;
@@ -24,7 +21,6 @@ export class UpdateAnOrganizationRequest extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "request, media_type=application/json" })
   request?: UpdateAnOrganizationRequestBody;
 }
-
 
 export class UpdateAnOrganizationResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

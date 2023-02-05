@@ -1,5 +1,4 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 
 
 export class GetABranchSchemaPathParams extends SpeakeasyBase {
@@ -13,12 +12,10 @@ export class GetABranchSchemaPathParams extends SpeakeasyBase {
   organization: string;
 }
 
-
 export class GetABranchSchemaQueryParams extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=keyspace" })
   keyspace?: string;
 }
-
 
 export class GetABranchSchemaRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
@@ -27,7 +24,6 @@ export class GetABranchSchemaRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   queryParams: GetABranchSchemaQueryParams;
 }
-
 
 export class GetABranchSchemaResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

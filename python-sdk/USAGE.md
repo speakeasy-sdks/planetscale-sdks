@@ -11,17 +11,17 @@ s.config_security(
         ),
     )
 )
-    
+   
 req = operations.CreateABranchPasswordRequest(
     path_params=operations.CreateABranchPasswordPathParams(
-        branch="sit",
-        database="voluptas",
-        organization="culpa",
+        branch="unde",
+        database="deserunt",
+        organization="porro",
     ),
     request=operations.CreateABranchPasswordRequestBody(
-        read_only_region_id="expedita",
+        read_only_region_id="nulla",
         role="readwriter",
-        ttl=96.199997,
+        ttl=8579.46,
     ),
 )
     
