@@ -1,8 +1,8 @@
 management:
     openapi-checksum: 5351c9ed07d53f3f6e4822135bfe5cc7
     openapi-version: v1
-    speakeasy-version: 1.0.0
+    speakeasy-version: 1.1.1
 go:
-    version: 2.0.0
+    version: 2.1.0
     packagename: github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk
 sdkclassname: planetscale

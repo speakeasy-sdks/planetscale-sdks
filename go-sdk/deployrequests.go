@@ -3,28 +3,28 @@ package planetscale
 import (
 	"context"
 	"fmt"
-	"github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/pkg/models/operations"
-	"github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/pkg/utils"
+	"github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/v2/pkg/models/operations"
+	"github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/v2/pkg/utils"
 	"net/http"
 )
 
-type DeployRequests struct {
-	_defaultClient  HTTPClient
-	_securityClient HTTPClient
-	_serverURL      string
-	_language       string
-	_sdkVersion     string
-	_genVersion     string
+type deployRequests struct {
+	defaultClient  HTTPClient
+	securityClient HTTPClient
+	serverURL      string
+	language       string
+	sdkVersion     string
+	genVersion     string
 }
 
-func NewDeployRequests(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *DeployRequests {
-	return &DeployRequests{
-		_defaultClient:  defaultClient,
-		_securityClient: securityClient,
-		_serverURL:      serverURL,
-		_language:       language,
-		_sdkVersion:     sdkVersion,
-		_genVersion:     genVersion,
+func newDeployRequests(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *deployRequests {
+	return &deployRequests{
+		defaultClient:  defaultClient,
+		securityClient: securityClient,
+		serverURL:      serverURL,
+		language:       language,
+		sdkVersion:     sdkVersion,
+		genVersion:     genVersion,
 	}
 }
 
@@ -44,8 +44,8 @@ func NewDeployRequests(defaultClient, securityClient HTTPClient, serverURL, lang
 // | :------- | :---------- |
 // | Organization | `deploy_deploy_requests` |
 // | Database | `deploy_deploy_requests` |
-func (s *DeployRequests) CancelAQueuedDeployRequest(ctx context.Context, request operations.CancelAQueuedDeployRequestRequest) (*operations.CancelAQueuedDeployRequestResponse, error) {
-	baseURL := s._serverURL
+func (s *deployRequests) CancelAQueuedDeployRequest(ctx context.Context, request operations.CancelAQueuedDeployRequestRequest) (*operations.CancelAQueuedDeployRequestResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/deploy-requests/{number}/cancel", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
@@ -53,11 +53,14 @@ func (s *DeployRequests) CancelAQueuedDeployRequest(ctx context.Context, request
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -99,8 +102,8 @@ func (s *DeployRequests) CancelAQueuedDeployRequest(ctx context.Context, request
 // | :------- | :---------- |
 // | Organization | `write_deploy_requests` |
 // | Database | `write_deploy_requests` |
-func (s *DeployRequests) CloseADeployRequest(ctx context.Context, request operations.CloseADeployRequestRequest) (*operations.CloseADeployRequestResponse, error) {
-	baseURL := s._serverURL
+func (s *deployRequests) CloseADeployRequest(ctx context.Context, request operations.CloseADeployRequestRequest) (*operations.CloseADeployRequestResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/deploy-requests/{number}", request.PathParams)
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
@@ -115,11 +118,14 @@ func (s *DeployRequests) CloseADeployRequest(ctx context.Context, request operat
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -161,8 +167,8 @@ func (s *DeployRequests) CloseADeployRequest(ctx context.Context, request operat
 // | :------- | :---------- |
 // | Organization | `deploy_deploy_requests` |
 // | Database | `deploy_deploy_requests` |
-func (s *DeployRequests) CompleteAGatedDeployRequest(ctx context.Context, request operations.CompleteAGatedDeployRequestRequest) (*operations.CompleteAGatedDeployRequestResponse, error) {
-	baseURL := s._serverURL
+func (s *deployRequests) CompleteAGatedDeployRequest(ctx context.Context, request operations.CompleteAGatedDeployRequestRequest) (*operations.CompleteAGatedDeployRequestResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/deploy-requests/{number}/apply-deploy", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
@@ -170,11 +176,14 @@ func (s *DeployRequests) CompleteAGatedDeployRequest(ctx context.Context, reques
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -216,8 +225,8 @@ func (s *DeployRequests) CompleteAGatedDeployRequest(ctx context.Context, reques
 // | :------- | :---------- |
 // | Organization | `deploy_deploy_requests` |
 // | Database | `deploy_deploy_requests` |
-func (s *DeployRequests) CompleteARevert(ctx context.Context, request operations.CompleteARevertRequest) (*operations.CompleteARevertResponse, error) {
-	baseURL := s._serverURL
+func (s *deployRequests) CompleteARevert(ctx context.Context, request operations.CompleteARevertRequest) (*operations.CompleteARevertResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/deploy-requests/{number}/revert", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
@@ -225,11 +234,14 @@ func (s *DeployRequests) CompleteARevert(ctx context.Context, request operations
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -271,8 +283,8 @@ func (s *DeployRequests) CompleteARevert(ctx context.Context, request operations
 // | :------- | :---------- |
 // | Organization | `deploy_deploy_requests` |
 // | Database | `deploy_deploy_requests` |
-func (s *DeployRequests) CompleteAnErroredDeploy(ctx context.Context, request operations.CompleteAnErroredDeployRequest) (*operations.CompleteAnErroredDeployResponse, error) {
-	baseURL := s._serverURL
+func (s *deployRequests) CompleteAnErroredDeploy(ctx context.Context, request operations.CompleteAnErroredDeployRequest) (*operations.CompleteAnErroredDeployResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/deploy-requests/{number}/complete-deploy", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
@@ -280,11 +292,14 @@ func (s *DeployRequests) CompleteAnErroredDeploy(ctx context.Context, request op
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -326,8 +341,8 @@ func (s *DeployRequests) CompleteAnErroredDeploy(ctx context.Context, request op
 // | :------- | :---------- |
 // | Organization | `write_deploy_requests` |
 // | Database | `write_deploy_requests` |
-func (s *DeployRequests) CreateADeployRequest(ctx context.Context, request operations.CreateADeployRequestRequest) (*operations.CreateADeployRequestResponse, error) {
-	baseURL := s._serverURL
+func (s *deployRequests) CreateADeployRequest(ctx context.Context, request operations.CreateADeployRequestRequest) (*operations.CreateADeployRequestResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/deploy-requests", request.PathParams)
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
@@ -342,11 +357,14 @@ func (s *DeployRequests) CreateADeployRequest(ctx context.Context, request opera
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -375,8 +393,8 @@ func (s *DeployRequests) CreateADeployRequest(ctx context.Context, request opera
 // GetADeployQueue - Get a deploy queue
 //
 // <p>Get the deploy queue for a database</p>
-func (s *DeployRequests) GetADeployQueue(ctx context.Context, request operations.GetADeployQueueRequest) (*operations.GetADeployQueueResponse, error) {
-	baseURL := s._serverURL
+func (s *deployRequests) GetADeployQueue(ctx context.Context, request operations.GetADeployQueueRequest) (*operations.GetADeployQueueResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/deploy-queue", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -384,11 +402,14 @@ func (s *DeployRequests) GetADeployQueue(ctx context.Context, request operations
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -430,8 +451,8 @@ func (s *DeployRequests) GetADeployQueue(ctx context.Context, request operations
 // | :------- | :---------- |
 // | Organization | `read_deploy_requests` |
 // | Database | `read_deploy_requests` |
-func (s *DeployRequests) GetADeployRequest(ctx context.Context, request operations.GetADeployRequestRequest) (*operations.GetADeployRequestResponse, error) {
-	baseURL := s._serverURL
+func (s *deployRequests) GetADeployRequest(ctx context.Context, request operations.GetADeployRequestRequest) (*operations.GetADeployRequestResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/deploy-requests/{number}", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -439,11 +460,14 @@ func (s *DeployRequests) GetADeployRequest(ctx context.Context, request operatio
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -487,8 +511,8 @@ func (s *DeployRequests) GetADeployRequest(ctx context.Context, request operatio
 // | :------- | :---------- |
 // | Organization | `read_deploy_requests` |
 // | Database | `read_deploy_requests` |
-func (s *DeployRequests) GetADeployment(ctx context.Context, request operations.GetADeploymentRequest) (*operations.GetADeploymentResponse, error) {
-	baseURL := s._serverURL
+func (s *deployRequests) GetADeployment(ctx context.Context, request operations.GetADeploymentRequest) (*operations.GetADeploymentResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/deploy-requests/{number}/deployment", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -496,11 +520,14 @@ func (s *DeployRequests) GetADeployment(ctx context.Context, request operations.
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -544,8 +571,8 @@ func (s *DeployRequests) GetADeployment(ctx context.Context, request operations.
 // | :------- | :---------- |
 // | Organization | `read_deploy_requests` |
 // | Database | `read_deploy_requests` |
-func (s *DeployRequests) ListDeployOperations(ctx context.Context, request operations.ListDeployOperationsRequest) (*operations.ListDeployOperationsResponse, error) {
-	baseURL := s._serverURL
+func (s *deployRequests) ListDeployOperations(ctx context.Context, request operations.ListDeployOperationsRequest) (*operations.ListDeployOperationsResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/deploy-requests/{number}/operations", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -555,11 +582,14 @@ func (s *DeployRequests) ListDeployOperations(ctx context.Context, request opera
 
 	utils.PopulateQueryParams(ctx, req, request.QueryParams)
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -603,8 +633,8 @@ func (s *DeployRequests) ListDeployOperations(ctx context.Context, request opera
 // | :------- | :---------- |
 // | Organization | `read_deploy_requests` |
 // | Database | `read_deploy_requests` |
-func (s *DeployRequests) ListDeployRequests(ctx context.Context, request operations.ListDeployRequestsRequest) (*operations.ListDeployRequestsResponse, error) {
-	baseURL := s._serverURL
+func (s *deployRequests) ListDeployRequests(ctx context.Context, request operations.ListDeployRequestsRequest) (*operations.ListDeployRequestsResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/deploy-requests", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -614,11 +644,14 @@ func (s *DeployRequests) ListDeployRequests(ctx context.Context, request operati
 
 	utils.PopulateQueryParams(ctx, req, request.QueryParams)
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -660,8 +693,8 @@ func (s *DeployRequests) ListDeployRequests(ctx context.Context, request operati
 // | :------- | :---------- |
 // | Organization | `deploy_deploy_requests` |
 // | Database | `deploy_deploy_requests` |
-func (s *DeployRequests) QueueADeployRequest(ctx context.Context, request operations.QueueADeployRequestRequest) (*operations.QueueADeployRequestResponse, error) {
-	baseURL := s._serverURL
+func (s *deployRequests) QueueADeployRequest(ctx context.Context, request operations.QueueADeployRequestRequest) (*operations.QueueADeployRequestResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/deploy-requests/{number}/deploy", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
@@ -669,11 +702,14 @@ func (s *DeployRequests) QueueADeployRequest(ctx context.Context, request operat
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -717,8 +753,8 @@ func (s *DeployRequests) QueueADeployRequest(ctx context.Context, request operat
 // | :------- | :---------- |
 // | Organization | `deploy_deploy_requests` |
 // | Database | `deploy_deploy_requests` |
-func (s *DeployRequests) SkipRevertPeriod(ctx context.Context, request operations.SkipRevertPeriodRequest) (*operations.SkipRevertPeriodResponse, error) {
-	baseURL := s._serverURL
+func (s *deployRequests) SkipRevertPeriod(ctx context.Context, request operations.SkipRevertPeriodRequest) (*operations.SkipRevertPeriodResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/deploy-requests/{number}/skip-revert", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
@@ -726,11 +762,14 @@ func (s *DeployRequests) SkipRevertPeriod(ctx context.Context, request operation
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -774,8 +813,8 @@ func (s *DeployRequests) SkipRevertPeriod(ctx context.Context, request operation
 // | :------- | :---------- |
 // | Organization | `deploy_deploy_requests` |
 // | Database | `deploy_deploy_requests` |
-func (s *DeployRequests) UpdateAutoApplyForDeployRequest(ctx context.Context, request operations.UpdateAutoApplyForDeployRequestRequest) (*operations.UpdateAutoApplyForDeployRequestResponse, error) {
-	baseURL := s._serverURL
+func (s *deployRequests) UpdateAutoApplyForDeployRequest(ctx context.Context, request operations.UpdateAutoApplyForDeployRequestRequest) (*operations.UpdateAutoApplyForDeployRequestResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/deploy-requests/{number}/auto-apply", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "PUT", url, nil)
@@ -783,11 +822,14 @@ func (s *DeployRequests) UpdateAutoApplyForDeployRequest(ctx context.Context, re
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 

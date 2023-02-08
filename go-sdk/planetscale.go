@@ -1,9 +1,10 @@
 package planetscale
 
 import (
-	"github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/pkg/models/shared"
-	"github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/pkg/utils"
+	"github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/v2/pkg/models/shared"
+	"github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/v2/pkg/utils"
 	"net/http"
+	"time"
 )
 
 var ServerList = []string{
@@ -15,15 +16,16 @@ type HTTPClient interface {
 }
 
 type Planetscale struct {
-	DatabaseBranchPasswords *DatabaseBranchPasswords
-	DatabaseBranches        *DatabaseBranches
-	Databases               *Databases
-	DeployRequests          *DeployRequests
-	OAuthApplications       *OAuthApplications
-	OAuthTokens             *OAuthTokens
-	Organizations           *Organizations
-	Users                   *Users
+	DatabaseBranchPasswords *databaseBranchPasswords
+	DatabaseBranches        *databaseBranches
+	Databases               *databases
+	DeployRequests          *deployRequests
+	OAuthApplications       *oAuthApplications
+	OAuthTokens             *oAuthTokens
+	Organizations           *organizations
+	Users                   *users
 
+	// Non-idiomatic field names below are to namespace fields from the fields names above to avoid name conflicts
 	_defaultClient  HTTPClient
 	_securityClient HTTPClient
 	_security       *shared.Security
@@ -60,15 +62,16 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *Planetscale {
 	sdk := &Planetscale{
 		_language:   "go",
-		_sdkVersion: "2.0.0",
-		_genVersion: "1.0.0",
+		_sdkVersion: "2.1.0",
+		_genVersion: "1.1.1",
 	}
 	for _, opt := range opts {
 		opt(sdk)
 	}
 
+	// Use WithClient to override the default client if you would like to customize the timeout
 	if sdk._defaultClient == nil {
-		sdk._defaultClient = http.DefaultClient
+		sdk._defaultClient = &http.Client{Timeout: 60 * time.Second}
 	}
 	if sdk._securityClient == nil {
 
@@ -84,7 +87,7 @@ func New(opts ...SDKOption) *Planetscale {
 		sdk._serverURL = ServerList[0]
 	}
 
-	sdk.DatabaseBranchPasswords = NewDatabaseBranchPasswords(
+	sdk.DatabaseBranchPasswords = newDatabaseBranchPasswords(
 		sdk._defaultClient,
 		sdk._securityClient,
 		sdk._serverURL,
@@ -93,7 +96,7 @@ func New(opts ...SDKOption) *Planetscale {
 		sdk._genVersion,
 	)
 
-	sdk.DatabaseBranches = NewDatabaseBranches(
+	sdk.DatabaseBranches = newDatabaseBranches(
 		sdk._defaultClient,
 		sdk._securityClient,
 		sdk._serverURL,
@@ -102,7 +105,7 @@ func New(opts ...SDKOption) *Planetscale {
 		sdk._genVersion,
 	)
 
-	sdk.Databases = NewDatabases(
+	sdk.Databases = newDatabases(
 		sdk._defaultClient,
 		sdk._securityClient,
 		sdk._serverURL,
@@ -111,7 +114,7 @@ func New(opts ...SDKOption) *Planetscale {
 		sdk._genVersion,
 	)
 
-	sdk.DeployRequests = NewDeployRequests(
+	sdk.DeployRequests = newDeployRequests(
 		sdk._defaultClient,
 		sdk._securityClient,
 		sdk._serverURL,
@@ -120,7 +123,7 @@ func New(opts ...SDKOption) *Planetscale {
 		sdk._genVersion,
 	)
 
-	sdk.OAuthApplications = NewOAuthApplications(
+	sdk.OAuthApplications = newOAuthApplications(
 		sdk._defaultClient,
 		sdk._securityClient,
 		sdk._serverURL,
@@ -129,7 +132,7 @@ func New(opts ...SDKOption) *Planetscale {
 		sdk._genVersion,
 	)
 
-	sdk.OAuthTokens = NewOAuthTokens(
+	sdk.OAuthTokens = newOAuthTokens(
 		sdk._defaultClient,
 		sdk._securityClient,
 		sdk._serverURL,
@@ -138,7 +141,7 @@ func New(opts ...SDKOption) *Planetscale {
 		sdk._genVersion,
 	)
 
-	sdk.Organizations = NewOrganizations(
+	sdk.Organizations = newOrganizations(
 		sdk._defaultClient,
 		sdk._securityClient,
 		sdk._serverURL,
@@ -147,7 +150,7 @@ func New(opts ...SDKOption) *Planetscale {
 		sdk._genVersion,
 	)
 
-	sdk.Users = NewUsers(
+	sdk.Users = newUsers(
 		sdk._defaultClient,
 		sdk._securityClient,
 		sdk._serverURL,

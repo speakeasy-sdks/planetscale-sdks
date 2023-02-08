@@ -1,4 +1,4 @@
-module github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk
+module github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/v2
 
 go 1.14
 

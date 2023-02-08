@@ -3,28 +3,28 @@ package planetscale
 import (
 	"context"
 	"fmt"
-	"github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/pkg/models/operations"
-	"github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/pkg/utils"
+	"github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/v2/pkg/models/operations"
+	"github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/v2/pkg/utils"
 	"net/http"
 )
 
-type Databases struct {
-	_defaultClient  HTTPClient
-	_securityClient HTTPClient
-	_serverURL      string
-	_language       string
-	_sdkVersion     string
-	_genVersion     string
+type databases struct {
+	defaultClient  HTTPClient
+	securityClient HTTPClient
+	serverURL      string
+	language       string
+	sdkVersion     string
+	genVersion     string
 }
 
-func NewDatabases(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *Databases {
-	return &Databases{
-		_defaultClient:  defaultClient,
-		_securityClient: securityClient,
-		_serverURL:      serverURL,
-		_language:       language,
-		_sdkVersion:     sdkVersion,
-		_genVersion:     genVersion,
+func newDatabases(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *databases {
+	return &databases{
+		defaultClient:  defaultClient,
+		securityClient: securityClient,
+		serverURL:      serverURL,
+		language:       language,
+		sdkVersion:     sdkVersion,
+		genVersion:     genVersion,
 	}
 }
 
@@ -43,8 +43,8 @@ func NewDatabases(defaultClient, securityClient HTTPClient, serverURL, language,
 //
 // | :------- | :---------- |
 // | Organization | `create_databases` |
-func (s *Databases) CreateADatabase(ctx context.Context, request operations.CreateADatabaseRequest) (*operations.CreateADatabaseResponse, error) {
-	baseURL := s._serverURL
+func (s *databases) CreateADatabase(ctx context.Context, request operations.CreateADatabaseRequest) (*operations.CreateADatabaseResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases", request.PathParams)
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
@@ -59,11 +59,14 @@ func (s *Databases) CreateADatabase(ctx context.Context, request operations.Crea
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -108,8 +111,8 @@ func (s *Databases) CreateADatabase(ctx context.Context, request operations.Crea
 // | :------- | :---------- |
 // | Organization | `delete_databases` |
 // | Database | `delete_database` |
-func (s *Databases) DeleteADatabase(ctx context.Context, request operations.DeleteADatabaseRequest) (*operations.DeleteADatabaseResponse, error) {
-	baseURL := s._serverURL
+func (s *databases) DeleteADatabase(ctx context.Context, request operations.DeleteADatabaseRequest) (*operations.DeleteADatabaseResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{name}", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
@@ -117,11 +120,14 @@ func (s *Databases) DeleteADatabase(ctx context.Context, request operations.Dele
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -157,8 +163,8 @@ func (s *Databases) DeleteADatabase(ctx context.Context, request operations.Dele
 // | :------- | :---------- |
 // | Organization | `read_databases` |
 // | Database | `read_database` |
-func (s *Databases) GetADatabase(ctx context.Context, request operations.GetADatabaseRequest) (*operations.GetADatabaseResponse, error) {
-	baseURL := s._serverURL
+func (s *databases) GetADatabase(ctx context.Context, request operations.GetADatabaseRequest) (*operations.GetADatabaseResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{name}", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -166,11 +172,14 @@ func (s *Databases) GetADatabase(ctx context.Context, request operations.GetADat
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -215,8 +224,8 @@ func (s *Databases) GetADatabase(ctx context.Context, request operations.GetADat
 // | :------- | :---------- |
 // | Organization | `read_databases` |
 // | Database | `read_database` |
-func (s *Databases) ListDatabasePromotionRequests(ctx context.Context, request operations.ListDatabasePromotionRequestsRequest) (*operations.ListDatabasePromotionRequestsResponse, error) {
-	baseURL := s._serverURL
+func (s *databases) ListDatabasePromotionRequests(ctx context.Context, request operations.ListDatabasePromotionRequestsRequest) (*operations.ListDatabasePromotionRequestsResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{name}/promotion-requests", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -226,11 +235,14 @@ func (s *Databases) ListDatabasePromotionRequests(ctx context.Context, request o
 
 	utils.PopulateQueryParams(ctx, req, request.QueryParams)
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -275,8 +287,8 @@ func (s *Databases) ListDatabasePromotionRequests(ctx context.Context, request o
 // | :------- | :---------- |
 // | Organization | `read_databases` |
 // | Database | `read_database` |
-func (s *Databases) ListDatabaseRegions(ctx context.Context, request operations.ListDatabaseRegionsRequest) (*operations.ListDatabaseRegionsResponse, error) {
-	baseURL := s._serverURL
+func (s *databases) ListDatabaseRegions(ctx context.Context, request operations.ListDatabaseRegionsRequest) (*operations.ListDatabaseRegionsResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{name}/regions", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -286,11 +298,14 @@ func (s *Databases) ListDatabaseRegions(ctx context.Context, request operations.
 
 	utils.PopulateQueryParams(ctx, req, request.QueryParams)
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -334,8 +349,8 @@ func (s *Databases) ListDatabaseRegions(ctx context.Context, request operations.
 //
 // | :------- | :---------- |
 // | Organization | `read_databases` |
-func (s *Databases) ListDatabases(ctx context.Context, request operations.ListDatabasesRequest) (*operations.ListDatabasesResponse, error) {
-	baseURL := s._serverURL
+func (s *databases) ListDatabases(ctx context.Context, request operations.ListDatabasesRequest) (*operations.ListDatabasesResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -345,11 +360,14 @@ func (s *Databases) ListDatabases(ctx context.Context, request operations.ListDa
 
 	utils.PopulateQueryParams(ctx, req, request.QueryParams)
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -396,8 +414,8 @@ func (s *Databases) ListDatabases(ctx context.Context, request operations.ListDa
 // | :------- | :---------- |
 // | Organization | `read_branches` |
 // | Database | `read_branches` |
-func (s *Databases) ListReadOnlyRegions(ctx context.Context, request operations.ListReadOnlyRegionsRequest) (*operations.ListReadOnlyRegionsResponse, error) {
-	baseURL := s._serverURL
+func (s *databases) ListReadOnlyRegions(ctx context.Context, request operations.ListReadOnlyRegionsRequest) (*operations.ListReadOnlyRegionsResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{name}/read-only-regions", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -407,11 +425,14 @@ func (s *Databases) ListReadOnlyRegions(ctx context.Context, request operations.
 
 	utils.PopulateQueryParams(ctx, req, request.QueryParams)
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -456,8 +477,8 @@ func (s *Databases) ListReadOnlyRegions(ctx context.Context, request operations.
 // | :------- | :---------- |
 // | Organization | `write_databases` |
 // | Database | `write_database` |
-func (s *Databases) UpdateDatabaseSettings(ctx context.Context, request operations.UpdateDatabaseSettingsRequest) (*operations.UpdateDatabaseSettingsResponse, error) {
-	baseURL := s._serverURL
+func (s *databases) UpdateDatabaseSettings(ctx context.Context, request operations.UpdateDatabaseSettingsRequest) (*operations.UpdateDatabaseSettingsResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{name}", request.PathParams)
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
@@ -472,11 +493,14 @@ func (s *Databases) UpdateDatabaseSettings(ctx context.Context, request operatio
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
