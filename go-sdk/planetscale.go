@@ -62,8 +62,8 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *Planetscale {
 	sdk := &Planetscale{
 		_language:   "go",
-		_sdkVersion: "2.1.0",
-		_genVersion: "1.1.1",
+		_sdkVersion: "2.1.1",
+		_genVersion: "1.1.2",
 	}
 	for _, opt := range opts {
 		opt(sdk)
