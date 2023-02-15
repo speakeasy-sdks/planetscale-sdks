@@ -1,6 +1,11 @@
 # Planetscale SDKs
 
 SDKs for the [Planetscale API](https://api-docs.planetscale.com/reference/getting-started-with-planetscale-api). Planetscale is the world's most advanced serverless MySQL platform. You can use the PlanetScale API to manage your PlanetScale databases programmatically. The PlanetScale API is currently in **beta**.
+<div align="left">
+   <a href="https://github.com/speakeasy-sdks/planetscale-sdks/actions"><img src="https://img.shields.io/github/actions/workflow/status/speakeasy-sdks/planetscale-sdks/speakeasy_sdk_generate.yml?style=for-the-badge" /></a>
+   <a href="https://api-docs.planetscale.com/reference/getting-started-with-planetscale-api"><img src="https://img.shields.io/static/v1?label=Docs&message=API Ref&color=000&style=for-the-badge" /></a>
+   <a href="https://vitess.io/slack"><img src="https://img.shields.io/static/v1?label=Slack&message=Join&color=7289da&style=for-the-badge" /></a>
+</div>
 
 <!-- Start SDK Installation -->
 ## SDK Installation
