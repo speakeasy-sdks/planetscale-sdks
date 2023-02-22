@@ -12,6 +12,6 @@ type CancelAQueuedDeployRequestRequest struct {
 
 type CancelAQueuedDeployRequestResponse struct {
 	ContentType                                        string
-	StatusCode                                         int64
+	StatusCode                                         int
 	CancelAQueuedDeployRequest200ApplicationJSONObject map[string]map[string]interface{}
 }

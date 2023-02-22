@@ -17,6 +17,6 @@ type ListReadOnlyRegionsRequest struct {
 
 type ListReadOnlyRegionsResponse struct {
 	ContentType                                 string
-	StatusCode                                  int64
+	StatusCode                                  int
 	ListReadOnlyRegions200ApplicationJSONObject map[string]map[string]interface{}
 }

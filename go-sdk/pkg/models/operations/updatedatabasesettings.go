@@ -25,6 +25,6 @@ type UpdateDatabaseSettingsRequest struct {
 
 type UpdateDatabaseSettingsResponse struct {
 	ContentType                                    string
-	StatusCode                                     int64
+	StatusCode                                     int
 	UpdateDatabaseSettings200ApplicationJSONObject map[string]map[string]interface{}
 }

@@ -12,6 +12,6 @@ type QueueADeployRequestRequest struct {
 
 type QueueADeployRequestResponse struct {
 	ContentType                                 string
-	StatusCode                                  int64
+	StatusCode                                  int
 	QueueADeployRequest200ApplicationJSONObject map[string]map[string]interface{}
 }

@@ -12,6 +12,6 @@ type CompleteAnErroredDeployRequest struct {
 
 type CompleteAnErroredDeployResponse struct {
 	ContentType                                     string
-	StatusCode                                      int64
+	StatusCode                                      int
 	CompleteAnErroredDeploy200ApplicationJSONObject map[string]map[string]interface{}
 }

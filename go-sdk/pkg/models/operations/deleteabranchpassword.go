@@ -13,5 +13,5 @@ type DeleteABranchPasswordRequest struct {
 
 type DeleteABranchPasswordResponse struct {
 	ContentType string
-	StatusCode  int64
+	StatusCode  int
 }

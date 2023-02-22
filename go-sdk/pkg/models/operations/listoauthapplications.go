@@ -16,6 +16,6 @@ type ListOauthApplicationsRequest struct {
 
 type ListOauthApplicationsResponse struct {
 	ContentType                                   string
-	StatusCode                                    int64
+	StatusCode                                    int
 	ListOauthApplications200ApplicationJSONObject map[string]map[string]interface{}
 }

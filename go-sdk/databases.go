@@ -73,7 +73,7 @@ func (s *databases) CreateADatabase(ctx context.Context, request operations.Crea
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.CreateADatabaseResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -134,7 +134,7 @@ func (s *databases) DeleteADatabase(ctx context.Context, request operations.Dele
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.DeleteADatabaseResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -186,7 +186,7 @@ func (s *databases) GetADatabase(ctx context.Context, request operations.GetADat
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.GetADatabaseResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -233,7 +233,9 @@ func (s *databases) ListDatabasePromotionRequests(ctx context.Context, request o
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	utils.PopulateQueryParams(ctx, req, request.QueryParams)
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	client := s.securityClient
 
@@ -249,7 +251,7 @@ func (s *databases) ListDatabasePromotionRequests(ctx context.Context, request o
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.ListDatabasePromotionRequestsResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -296,7 +298,9 @@ func (s *databases) ListDatabaseRegions(ctx context.Context, request operations.
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	utils.PopulateQueryParams(ctx, req, request.QueryParams)
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	client := s.securityClient
 
@@ -312,7 +316,7 @@ func (s *databases) ListDatabaseRegions(ctx context.Context, request operations.
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.ListDatabaseRegionsResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -358,7 +362,9 @@ func (s *databases) ListDatabases(ctx context.Context, request operations.ListDa
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	utils.PopulateQueryParams(ctx, req, request.QueryParams)
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	client := s.securityClient
 
@@ -374,7 +380,7 @@ func (s *databases) ListDatabases(ctx context.Context, request operations.ListDa
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.ListDatabasesResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -423,7 +429,9 @@ func (s *databases) ListReadOnlyRegions(ctx context.Context, request operations.
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	utils.PopulateQueryParams(ctx, req, request.QueryParams)
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	client := s.securityClient
 
@@ -439,7 +447,7 @@ func (s *databases) ListReadOnlyRegions(ctx context.Context, request operations.
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.ListReadOnlyRegionsResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -507,7 +515,7 @@ func (s *databases) UpdateDatabaseSettings(ctx context.Context, request operatio
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.UpdateDatabaseSettingsResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {

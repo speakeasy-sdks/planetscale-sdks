@@ -16,6 +16,6 @@ type UpdateAnOrganizationRequest struct {
 
 type UpdateAnOrganizationResponse struct {
 	ContentType                                  string
-	StatusCode                                   int64
+	StatusCode                                   int
 	UpdateAnOrganization200ApplicationJSONObject map[string]map[string]interface{}
 }

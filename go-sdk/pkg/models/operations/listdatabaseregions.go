@@ -17,6 +17,6 @@ type ListDatabaseRegionsRequest struct {
 
 type ListDatabaseRegionsResponse struct {
 	ContentType                                 string
-	StatusCode                                  int64
+	StatusCode                                  int
 	ListDatabaseRegions200ApplicationJSONObject map[string]map[string]interface{}
 }

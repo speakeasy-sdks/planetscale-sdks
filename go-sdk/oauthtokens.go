@@ -68,7 +68,7 @@ func (s *oAuthTokens) CreateOrRenewAnOauthToken(ctx context.Context, request ope
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.CreateOrRenewAnOauthTokenResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {

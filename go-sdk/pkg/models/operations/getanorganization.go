@@ -10,6 +10,6 @@ type GetAnOrganizationRequest struct {
 
 type GetAnOrganizationResponse struct {
 	ContentType                               string
-	StatusCode                                int64
+	StatusCode                                int
 	GetAnOrganization200ApplicationJSONObject map[string]map[string]interface{}
 }

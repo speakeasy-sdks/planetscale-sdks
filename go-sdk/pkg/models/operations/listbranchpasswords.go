@@ -19,6 +19,6 @@ type ListBranchPasswordsRequest struct {
 
 type ListBranchPasswordsResponse struct {
 	ContentType                                 string
-	StatusCode                                  int64
+	StatusCode                                  int
 	ListBranchPasswords200ApplicationJSONObject map[string]map[string]interface{}
 }

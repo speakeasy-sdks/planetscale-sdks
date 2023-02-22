@@ -11,6 +11,6 @@ type ListOrganizationsRequest struct {
 
 type ListOrganizationsResponse struct {
 	ContentType                               string
-	StatusCode                                int64
+	StatusCode                                int
 	ListOrganizations200ApplicationJSONObject map[string]map[string]interface{}
 }

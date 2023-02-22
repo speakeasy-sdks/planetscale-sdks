@@ -16,6 +16,6 @@ type ListDatabasesRequest struct {
 
 type ListDatabasesResponse struct {
 	ContentType                           string
-	StatusCode                            int64
+	StatusCode                            int
 	ListDatabases200ApplicationJSONObject map[string]map[string]interface{}
 }

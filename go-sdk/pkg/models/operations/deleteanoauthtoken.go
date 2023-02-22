@@ -12,5 +12,5 @@ type DeleteAnOauthTokenRequest struct {
 
 type DeleteAnOauthTokenResponse struct {
 	ContentType string
-	StatusCode  int64
+	StatusCode  int
 }

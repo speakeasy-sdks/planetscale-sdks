@@ -11,6 +11,6 @@ type GetAnOauthApplicationRequest struct {
 
 type GetAnOauthApplicationResponse struct {
 	ContentType                                   string
-	StatusCode                                    int64
+	StatusCode                                    int
 	GetAnOauthApplication200ApplicationJSONObject map[string]map[string]interface{}
 }

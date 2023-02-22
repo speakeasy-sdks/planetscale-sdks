@@ -17,6 +17,6 @@ type ListOauthTokensRequest struct {
 
 type ListOauthTokensResponse struct {
 	ContentType                             string
-	StatusCode                              int64
+	StatusCode                              int
 	ListOauthTokens200ApplicationJSONObject map[string]map[string]interface{}
 }

@@ -12,5 +12,5 @@ type CancelOrDenyADemotionRequestRequest struct {
 
 type CancelOrDenyADemotionRequestResponse struct {
 	ContentType string
-	StatusCode  int64
+	StatusCode  int
 }

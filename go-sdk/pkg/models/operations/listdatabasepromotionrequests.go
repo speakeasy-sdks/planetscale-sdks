@@ -17,6 +17,6 @@ type ListDatabasePromotionRequestsRequest struct {
 
 type ListDatabasePromotionRequestsResponse struct {
 	ContentType                                           string
-	StatusCode                                            int64
+	StatusCode                                            int
 	ListDatabasePromotionRequests200ApplicationJSONObject map[string]map[string]interface{}
 }

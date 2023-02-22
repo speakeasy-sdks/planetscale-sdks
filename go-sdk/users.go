@@ -55,7 +55,7 @@ func (s *users) GetCurrentUser(ctx context.Context) (*operations.GetCurrentUserR
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.GetCurrentUserResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {

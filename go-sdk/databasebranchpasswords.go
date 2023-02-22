@@ -75,7 +75,7 @@ func (s *databaseBranchPasswords) CreateABranchPassword(ctx context.Context, req
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.CreateABranchPasswordResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -137,7 +137,7 @@ func (s *databaseBranchPasswords) DeleteABranchPassword(ctx context.Context, req
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.DeleteABranchPasswordResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -176,7 +176,9 @@ func (s *databaseBranchPasswords) GetABranchPassword(ctx context.Context, reques
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	utils.PopulateQueryParams(ctx, req, request.QueryParams)
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	client := s.securityClient
 
@@ -192,7 +194,7 @@ func (s *databaseBranchPasswords) GetABranchPassword(ctx context.Context, reques
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.GetABranchPasswordResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -240,7 +242,9 @@ func (s *databaseBranchPasswords) ListBranchPasswords(ctx context.Context, reque
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	utils.PopulateQueryParams(ctx, req, request.QueryParams)
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	client := s.securityClient
 
@@ -256,7 +260,7 @@ func (s *databaseBranchPasswords) ListBranchPasswords(ctx context.Context, reque
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.ListBranchPasswordsResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -325,7 +329,7 @@ func (s *databaseBranchPasswords) RenewABranchPassword(ctx context.Context, requ
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.RenewABranchPasswordResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -394,7 +398,7 @@ func (s *databaseBranchPasswords) UpdateABranchPassword(ctx context.Context, req
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.UpdateABranchPasswordResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
