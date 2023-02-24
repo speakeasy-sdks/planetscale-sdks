@@ -32,8 +32,8 @@ class PlanetscaleAPI:
     _security: shared.Security
     _server_url: str = SERVERS[0]
     _language: str = "python"
-    _sdk_version: str = "2.4.1"
-    _gen_version: str = "1.4.8"
+    _sdk_version: str = "2.5.0"
+    _gen_version: str = "1.5.0"
 
     def __init__(self) -> None:
         self._client = requests.Session()

@@ -1,5 +1,6 @@
+from __future__ import annotations
 import dataclasses
-from dataclasses_json import dataclass_json
+from dataclasses_json import Undefined, dataclass_json
 from planetscaleapi import utils
 from typing import Any, Optional
 
@@ -9,11 +10,11 @@ class UpdateAnOrganizationPathParams:
     name: str = dataclasses.field(metadata={'path_param': { 'field_name': 'name', 'style': 'simple', 'explode': False }})
     
 
-@dataclass_json
+@dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class UpdateAnOrganizationRequestBody:
-    billing_email: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('billing_email') }})
-    require_admin_for_production_access: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('require_admin_for_production_access') }})
+    billing_email: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('billing_email'), 'exclude': lambda f: f is None }})
+    require_admin_for_production_access: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('require_admin_for_production_access'), 'exclude': lambda f: f is None }})
     
 
 @dataclasses.dataclass
