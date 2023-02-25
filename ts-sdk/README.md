@@ -19,17 +19,21 @@ yarn add @planetscale/sdk
 ## SDK Example Usage
 <!-- Start SDK Example Usage -->
 ```typescript
-import { PlanetscaleAPI, withSecurity} from "@planetscale/sdk";
-import { CreateABranchPasswordRequest, CreateABranchPasswordResponse } from "@planetscale/sdk/src/sdk/models/operations";
-import { AxiosError } from "axios";
+import {
+  CreateABranchPasswordRequest,
+  CreateABranchPasswordResponse 
+} from "@planetscale/sdk/dist/sdk/models/operations";
 
-const sdk = new PlanetscaleAPI(withSecurity(
+import { AxiosError } from "axios";
+import { PlanetscaleAPI } from "@planetscale/sdk";
+
+const sdk = new PlanetscaleAPI({
   security: {
     apiKeyHeader: {
       apiKey: "YOUR_API_KEY_HERE",
     },
   }
-));
+});
     
 const req: CreateABranchPasswordRequest = {
   pathParams: {

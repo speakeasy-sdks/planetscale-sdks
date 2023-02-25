@@ -3,6 +3,7 @@
 package main
 
 import (
+    "context"
     "log"
     "github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk"
     "github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/pkg/models/shared"
@@ -16,7 +17,7 @@ func main() {
                 APIKeyHeader: shared.SchemeAPIKeyHeader{
                     APIKey: "YOUR_API_KEY_HERE",
                 },
-            }
+            },
         ),
     }
 
@@ -34,7 +35,8 @@ func main() {
             TTL: 8579.46,
         },
     }
-    
+
+    ctx := context.Background()
     res, err := s.DatabaseBranchPasswords.CreateABranchPassword(ctx, req)
     if err != nil {
         log.Fatal(err)
@@ -43,5 +45,6 @@ func main() {
     if res.CreateABranchPassword201ApplicationJSONObject != nil {
         // handle response
     }
+}
 ```
 <!-- End SDK Example Usage -->
