@@ -1,4 +1,5 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose, Type } from "class-transformer";
 
 
 export class CreateADatabasePathParams extends SpeakeasyBase {
@@ -7,10 +8,12 @@ export class CreateADatabasePathParams extends SpeakeasyBase {
 }
 
 export class CreateADatabaseRequestBody extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "name" })
   name: string;
 
-  @SpeakeasyMetadata({ data: "json, name=notes" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "notes" })
   notes?: string;
 }
 

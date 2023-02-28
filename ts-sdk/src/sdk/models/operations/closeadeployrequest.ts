@@ -1,4 +1,5 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose, Type } from "class-transformer";
 
 
 export class CloseADeployRequestPathParams extends SpeakeasyBase {
@@ -16,7 +17,8 @@ export enum CloseADeployRequestRequestBodyStateEnum {
 }
 
 export class CloseADeployRequestRequestBody extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=state" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "state" })
   state?: CloseADeployRequestRequestBodyStateEnum;
 }
 

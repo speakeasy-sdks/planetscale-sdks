@@ -1,6 +1,7 @@
 import * as utils from "../internal/utils";
 import * as operations from "./models/operations";
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse, ParamsSerializerOptions } from "axios";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { plainToInstance } from "class-transformer";
 
 export class Organizations {
   _defaultClient: AxiosInstance;
@@ -61,7 +62,11 @@ export class Organizations {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.getAnOrganization200ApplicationJSONObject = httpRes?.data;
+              res.getAnOrganization200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:
@@ -103,19 +108,12 @@ export class Organizations {
     
     const client: AxiosInstance = this._securityClient!;
     
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
-    
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -126,7 +124,11 @@ export class Organizations {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.listOrganizations200ApplicationJSONObject = httpRes?.data;
+              res.listOrganizations200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:
@@ -169,19 +171,12 @@ export class Organizations {
     
     const client: AxiosInstance = this._securityClient!;
     
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
-    
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -192,7 +187,11 @@ export class Organizations {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.listRegionsForAnOrganization200ApplicationJSONObject = httpRes?.data;
+              res.listRegionsForAnOrganization200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:
@@ -262,7 +261,11 @@ export class Organizations {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.updateAnOrganization200ApplicationJSONObject = httpRes?.data;
+              res.updateAnOrganization200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:

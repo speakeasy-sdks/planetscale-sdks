@@ -1,4 +1,5 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Type } from "class-transformer";
 
 
 export class ListOrganizationsQueryParams extends SpeakeasyBase {

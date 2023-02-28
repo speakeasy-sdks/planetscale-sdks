@@ -1,6 +1,7 @@
 import * as utils from "../internal/utils";
 import * as operations from "./models/operations";
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse, ParamsSerializerOptions } from "axios";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { plainToInstance } from "class-transformer";
 
 export class Databases {
   _defaultClient: AxiosInstance;
@@ -76,7 +77,11 @@ export class Databases {
         switch (true) {
           case httpRes?.status == 201:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.createADatabase201ApplicationJSONObject = httpRes?.data;
+              res.createADatabase201ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:
@@ -195,7 +200,11 @@ export class Databases {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.getADatabase200ApplicationJSONObject = httpRes?.data;
+              res.getADatabase200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:
@@ -241,19 +250,12 @@ export class Databases {
     
     const client: AxiosInstance = this._securityClient!;
     
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
-    
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -264,7 +266,11 @@ export class Databases {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.listDatabasePromotionRequests200ApplicationJSONObject = httpRes?.data;
+              res.listDatabasePromotionRequests200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:
@@ -310,19 +316,12 @@ export class Databases {
     
     const client: AxiosInstance = this._securityClient!;
     
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
-    
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -333,7 +332,11 @@ export class Databases {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.listDatabaseRegions200ApplicationJSONObject = httpRes?.data;
+              res.listDatabaseRegions200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:
@@ -378,19 +381,12 @@ export class Databases {
     
     const client: AxiosInstance = this._securityClient!;
     
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
-    
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -401,7 +397,11 @@ export class Databases {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.listDatabases200ApplicationJSONObject = httpRes?.data;
+              res.listDatabases200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:
@@ -449,19 +449,12 @@ export class Databases {
     
     const client: AxiosInstance = this._securityClient!;
     
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
-    
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -472,7 +465,11 @@ export class Databases {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.listReadOnlyRegions200ApplicationJSONObject = httpRes?.data;
+              res.listReadOnlyRegions200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:
@@ -546,7 +543,11 @@ export class Databases {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.updateDatabaseSettings200ApplicationJSONObject = httpRes?.data;
+              res.updateDatabaseSettings200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:

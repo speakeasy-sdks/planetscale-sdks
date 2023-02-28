@@ -1,4 +1,5 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose, Type } from "class-transformer";
 
 
 export class RenewABranchPasswordPathParams extends SpeakeasyBase {
@@ -16,7 +17,8 @@ export class RenewABranchPasswordPathParams extends SpeakeasyBase {
 }
 
 export class RenewABranchPasswordRequestBody extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=read_only_region_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "read_only_region_id" })
   readOnlyRegionId?: string;
 }
 

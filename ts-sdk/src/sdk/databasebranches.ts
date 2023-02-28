@@ -1,6 +1,7 @@
 import * as utils from "../internal/utils";
 import * as operations from "./models/operations";
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse, ParamsSerializerOptions } from "axios";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { plainToInstance } from "class-transformer";
 
 export class DatabaseBranches {
   _defaultClient: AxiosInstance;
@@ -137,7 +138,11 @@ export class DatabaseBranches {
         switch (true) {
           case httpRes?.status == 201:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.createABranch201ApplicationJSONObject = httpRes?.data;
+              res.createABranch201ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:
@@ -198,7 +203,11 @@ export class DatabaseBranches {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.createAPromotionRequest200ApplicationJSONObject = httpRes?.data;
+              res.createAPromotionRequest200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:
@@ -317,7 +326,11 @@ export class DatabaseBranches {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.demoteABranch200ApplicationJSONObject = httpRes?.data;
+              res.demoteABranch200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:
@@ -379,7 +392,11 @@ export class DatabaseBranches {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.getABranch200ApplicationJSONObject = httpRes?.data;
+              res.getABranch200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:
@@ -426,19 +443,12 @@ export class DatabaseBranches {
     
     const client: AxiosInstance = this._securityClient!;
     
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
-    
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -449,7 +459,11 @@ export class DatabaseBranches {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.getABranchSchema200ApplicationJSONObject = httpRes?.data;
+              res.getABranchSchema200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:
@@ -511,7 +525,11 @@ export class DatabaseBranches {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.getADemotionRequest200ApplicationJSONObject = httpRes?.data;
+              res.getADemotionRequest200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:
@@ -572,7 +590,11 @@ export class DatabaseBranches {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.getAPromotionRequest200ApplicationJSONObject = httpRes?.data;
+              res.getAPromotionRequest200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:
@@ -634,7 +656,11 @@ export class DatabaseBranches {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.getBranchStatus200ApplicationJSONObject = httpRes?.data;
+              res.getBranchStatus200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:
@@ -681,19 +707,12 @@ export class DatabaseBranches {
     
     const client: AxiosInstance = this._securityClient!;
     
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
-    
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -704,7 +723,11 @@ export class DatabaseBranches {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.listBranches200ApplicationJSONObject = httpRes?.data;
+              res.listBranches200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:

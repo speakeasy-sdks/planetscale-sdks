@@ -1,6 +1,7 @@
 import * as utils from "../internal/utils";
 import * as operations from "./models/operations";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { plainToInstance } from "class-transformer";
 
 export class OAuthTokens {
   _defaultClient: AxiosInstance;
@@ -74,7 +75,11 @@ export class OAuthTokens {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.createOrRenewAnOauthToken200ApplicationJSONObject = httpRes?.data;
+              res.createOrRenewAnOauthToken200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:
