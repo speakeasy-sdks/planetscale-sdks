@@ -12,6 +12,6 @@ type GetADemotionRequestRequest struct {
 
 type GetADemotionRequestResponse struct {
 	ContentType                                 string
-	StatusCode                                  int64
+	StatusCode                                  int
 	GetADemotionRequest200ApplicationJSONObject map[string]map[string]interface{}
 }

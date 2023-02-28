@@ -1,8 +1,9 @@
+from __future__ import annotations
 import dataclasses
-from typing import Any,Optional
+from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from dataclasses_json import dataclass_json
 from planetscaleapi import utils
+from typing import Any, Optional
 
 
 @dataclasses.dataclass
@@ -15,15 +16,15 @@ class CreateOrRenewAnOauthTokenRequestBodyGrantTypeEnum(str, Enum):
     REFRESH_TOKEN = "refresh_token"
 
 
-@dataclass_json
+@dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class CreateOrRenewAnOauthTokenRequestBody:
     client_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('client_id') }})
     client_secret: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('client_secret') }})
     grant_type: CreateOrRenewAnOauthTokenRequestBodyGrantTypeEnum = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('grant_type') }})
-    code: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('code') }})
-    redirect_uri: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('redirect_uri') }})
-    refresh_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('refresh_token') }})
+    code: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('code'), 'exclude': lambda f: f is None }})
+    redirect_uri: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('redirect_uri'), 'exclude': lambda f: f is None }})
+    refresh_token: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('refresh_token'), 'exclude': lambda f: f is None }})
     
 
 @dataclasses.dataclass

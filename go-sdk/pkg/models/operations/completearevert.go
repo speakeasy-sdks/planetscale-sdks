@@ -12,6 +12,6 @@ type CompleteARevertRequest struct {
 
 type CompleteARevertResponse struct {
 	ContentType                             string
-	StatusCode                              int64
+	StatusCode                              int
 	CompleteARevert200ApplicationJSONObject map[string]map[string]interface{}
 }

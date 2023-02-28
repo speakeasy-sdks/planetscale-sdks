@@ -1,6 +1,7 @@
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse, ParamsSerializerOptions } from "axios";
-import * as operations from "./models/operations";
 import * as utils from "../internal/utils";
+import * as operations from "./models/operations";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { plainToInstance } from "class-transformer";
 
 export class OAuthApplications {
   _defaultClient: AxiosInstance;
@@ -112,7 +113,11 @@ export class OAuthApplications {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.getAnOauthApplication200ApplicationJSONObject = httpRes?.data;
+              res.getAnOauthApplication200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:
@@ -168,7 +173,11 @@ export class OAuthApplications {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.getAnOauthToken200ApplicationJSONObject = httpRes?.data;
+              res.getAnOauthToken200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:
@@ -209,19 +218,12 @@ export class OAuthApplications {
     
     const client: AxiosInstance = this._securityClient!;
     
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
-    
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -232,7 +234,11 @@ export class OAuthApplications {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.listOauthApplications200ApplicationJSONObject = httpRes?.data;
+              res.listOauthApplications200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:
@@ -275,19 +281,12 @@ export class OAuthApplications {
     
     const client: AxiosInstance = this._securityClient!;
     
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
-    
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -298,7 +297,11 @@ export class OAuthApplications {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.listOauthTokens200ApplicationJSONObject = httpRes?.data;
+              res.listOauthTokens200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:

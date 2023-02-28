@@ -1,8 +1,9 @@
+from __future__ import annotations
 import dataclasses
-from typing import Any,Optional
+from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from dataclasses_json import dataclass_json
 from planetscaleapi import utils
+from typing import Any, Optional
 
 
 @dataclasses.dataclass
@@ -15,10 +16,10 @@ class CloseADeployRequestRequestBodyStateEnum(str, Enum):
     CLOSED = "closed"
 
 
-@dataclass_json
+@dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class CloseADeployRequestRequestBody:
-    state: Optional[CloseADeployRequestRequestBodyStateEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('state') }})
+    state: Optional[CloseADeployRequestRequestBodyStateEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('state'), 'exclude': lambda f: f is None }})
     
 
 @dataclasses.dataclass

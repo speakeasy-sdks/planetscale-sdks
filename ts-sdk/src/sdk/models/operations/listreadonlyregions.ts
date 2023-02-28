@@ -1,5 +1,5 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Type } from "class-transformer";
 
 
 export class ListReadOnlyRegionsPathParams extends SpeakeasyBase {
@@ -10,7 +10,6 @@ export class ListReadOnlyRegionsPathParams extends SpeakeasyBase {
   organization: string;
 }
 
-
 export class ListReadOnlyRegionsQueryParams extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=page" })
   page?: number;
@@ -19,7 +18,6 @@ export class ListReadOnlyRegionsQueryParams extends SpeakeasyBase {
   perPage?: number;
 }
 
-
 export class ListReadOnlyRegionsRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   pathParams: ListReadOnlyRegionsPathParams;
@@ -27,7 +25,6 @@ export class ListReadOnlyRegionsRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   queryParams: ListReadOnlyRegionsQueryParams;
 }
-
 
 export class ListReadOnlyRegionsResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

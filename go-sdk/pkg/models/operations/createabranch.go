@@ -18,6 +18,6 @@ type CreateABranchRequest struct {
 
 type CreateABranchResponse struct {
 	ContentType                           string
-	StatusCode                            int64
+	StatusCode                            int
 	CreateABranch201ApplicationJSONObject map[string]map[string]interface{}
 }

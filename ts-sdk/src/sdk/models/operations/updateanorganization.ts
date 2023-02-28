@@ -1,5 +1,5 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose, Type } from "class-transformer";
 
 
 export class UpdateAnOrganizationPathParams extends SpeakeasyBase {
@@ -7,15 +7,15 @@ export class UpdateAnOrganizationPathParams extends SpeakeasyBase {
   name: string;
 }
 
-
 export class UpdateAnOrganizationRequestBody extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=billing_email" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "billing_email" })
   billingEmail?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=require_admin_for_production_access" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "require_admin_for_production_access" })
   requireAdminForProductionAccess?: boolean;
 }
-
 
 export class UpdateAnOrganizationRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
@@ -24,7 +24,6 @@ export class UpdateAnOrganizationRequest extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "request, media_type=application/json" })
   request?: UpdateAnOrganizationRequestBody;
 }
-
 
 export class UpdateAnOrganizationResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

@@ -1,14 +1,13 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Type } from "class-transformer";
 
 
-
-export class SchemeApiKeyHeader extends SpeakeasyBase {
+export class SchemeAPIKeyHeader extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "security, name=Authorization" })
   apiKey: string;
 }
 
-
 export class Security extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "security, scheme=true;type=apiKey;subtype=header" })
-  apiKeyHeader: SchemeApiKeyHeader;
+  apiKeyHeader: SchemeAPIKeyHeader;
 }

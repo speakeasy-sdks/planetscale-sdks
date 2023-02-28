@@ -1,5 +1,5 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Type } from "class-transformer";
 
 
 export class ListDatabasePromotionRequestsPathParams extends SpeakeasyBase {
@@ -10,7 +10,6 @@ export class ListDatabasePromotionRequestsPathParams extends SpeakeasyBase {
   organization: string;
 }
 
-
 export class ListDatabasePromotionRequestsQueryParams extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=page" })
   page?: number;
@@ -19,7 +18,6 @@ export class ListDatabasePromotionRequestsQueryParams extends SpeakeasyBase {
   perPage?: number;
 }
 
-
 export class ListDatabasePromotionRequestsRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   pathParams: ListDatabasePromotionRequestsPathParams;
@@ -27,7 +25,6 @@ export class ListDatabasePromotionRequestsRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   queryParams: ListDatabasePromotionRequestsQueryParams;
 }
-
 
 export class ListDatabasePromotionRequestsResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

@@ -12,6 +12,6 @@ type UpdateAutoApplyForDeployRequestRequest struct {
 
 type UpdateAutoApplyForDeployRequestResponse struct {
 	ContentType                                             string
-	StatusCode                                              int64
+	StatusCode                                              int
 	UpdateAutoApplyForDeployRequest200ApplicationJSONObject map[string]map[string]interface{}
 }

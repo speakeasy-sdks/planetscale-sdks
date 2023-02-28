@@ -1,8 +1,9 @@
+from __future__ import annotations
 import dataclasses
-from typing import Any,Optional
+from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
-from dataclasses_json import dataclass_json
 from planetscaleapi import utils
+from typing import Any, Optional
 
 
 @dataclasses.dataclass
@@ -18,12 +19,12 @@ class CreateABranchPasswordRequestBodyRoleEnum(str, Enum):
     READWRITER = "readwriter"
 
 
-@dataclass_json
+@dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class CreateABranchPasswordRequestBody:
-    read_only_region_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('read_only_region_id') }})
-    role: Optional[CreateABranchPasswordRequestBodyRoleEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('role') }})
-    ttl: Optional[float] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('ttl') }})
+    read_only_region_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('read_only_region_id'), 'exclude': lambda f: f is None }})
+    role: Optional[CreateABranchPasswordRequestBodyRoleEnum] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('role'), 'exclude': lambda f: f is None }})
+    ttl: Optional[float] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('ttl'), 'exclude': lambda f: f is None }})
     
 
 @dataclasses.dataclass

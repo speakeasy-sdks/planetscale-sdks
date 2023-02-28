@@ -19,6 +19,6 @@ type UpdateABranchPasswordRequest struct {
 
 type UpdateABranchPasswordResponse struct {
 	ContentType                                   string
-	StatusCode                                    int64
+	StatusCode                                    int
 	UpdateABranchPassword200ApplicationJSONObject map[string]map[string]interface{}
 }

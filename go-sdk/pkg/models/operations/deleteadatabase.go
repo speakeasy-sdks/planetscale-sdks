@@ -11,5 +11,5 @@ type DeleteADatabaseRequest struct {
 
 type DeleteADatabaseResponse struct {
 	ContentType string
-	StatusCode  int64
+	StatusCode  int
 }

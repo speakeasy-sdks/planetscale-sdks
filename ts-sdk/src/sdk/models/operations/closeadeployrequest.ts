@@ -1,5 +1,5 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose, Type } from "class-transformer";
 
 
 export class CloseADeployRequestPathParams extends SpeakeasyBase {
@@ -12,17 +12,15 @@ export class CloseADeployRequestPathParams extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=organization" })
   organization: string;
 }
-
 export enum CloseADeployRequestRequestBodyStateEnum {
     Closed = "closed"
 }
 
-
 export class CloseADeployRequestRequestBody extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=state" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "state" })
   state?: CloseADeployRequestRequestBodyStateEnum;
 }
-
 
 export class CloseADeployRequestRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
@@ -31,7 +29,6 @@ export class CloseADeployRequestRequest extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "request, media_type=application/json" })
   request?: CloseADeployRequestRequestBody;
 }
-
 
 export class CloseADeployRequestResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

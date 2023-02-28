@@ -28,6 +28,6 @@ type CreateABranchPasswordRequest struct {
 
 type CreateABranchPasswordResponse struct {
 	ContentType                                   string
-	StatusCode                                    int64
+	StatusCode                                    int
 	CreateABranchPassword201ApplicationJSONObject map[string]map[string]interface{}
 }

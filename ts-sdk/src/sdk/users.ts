@@ -1,6 +1,7 @@
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
-import * as operations from "./models/operations";
 import * as utils from "../internal/utils";
+import * as operations from "./models/operations";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { plainToInstance } from "class-transformer";
 
 export class Users {
   _defaultClient: AxiosInstance;
@@ -50,7 +51,11 @@ export class Users {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.getCurrentUser200ApplicationJSONObject = httpRes?.data;
+              res.getCurrentUser200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:

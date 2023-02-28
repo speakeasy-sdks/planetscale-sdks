@@ -2,6 +2,6 @@ package operations
 
 type GetCurrentUserResponse struct {
 	ContentType                            string
-	StatusCode                             int64
+	StatusCode                             int
 	GetCurrentUser200ApplicationJSONObject map[string]map[string]interface{}
 }

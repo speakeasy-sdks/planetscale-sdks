@@ -17,6 +17,6 @@ type ListBranchesRequest struct {
 
 type ListBranchesResponse struct {
 	ContentType                          string
-	StatusCode                           int64
+	StatusCode                           int
 	ListBranches200ApplicationJSONObject map[string]map[string]interface{}
 }

@@ -1,5 +1,5 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose, Type } from "class-transformer";
 
 
 export class UpdateDatabaseSettingsPathParams extends SpeakeasyBase {
@@ -10,39 +10,47 @@ export class UpdateDatabaseSettingsPathParams extends SpeakeasyBase {
   organization: string;
 }
 
-
 export class UpdateDatabaseSettingsRequestBody extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=allow_data_branching" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "allow_data_branching" })
   allowDataBranching?: boolean;
 
-  @SpeakeasyMetadata({ data: "json, name=automatic_migrations" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "automatic_migrations" })
   automaticMigrations?: boolean;
 
-  @SpeakeasyMetadata({ data: "json, name=default_branch" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "default_branch" })
   defaultBranch?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=insights_raw_queries" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "insights_raw_queries" })
   insightsRawQueries?: boolean;
 
-  @SpeakeasyMetadata({ data: "json, name=migration_framework" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "migration_framework" })
   migrationFramework?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=migration_table_name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "migration_table_name" })
   migrationTableName?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=notes" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "notes" })
   notes?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=production_branch_web_console" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "production_branch_web_console" })
   productionBranchWebConsole?: boolean;
 
-  @SpeakeasyMetadata({ data: "json, name=require_approval_for_deploy" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "require_approval_for_deploy" })
   requireApprovalForDeploy?: boolean;
 
-  @SpeakeasyMetadata({ data: "json, name=restrict_branch_region" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "restrict_branch_region" })
   restrictBranchRegion?: boolean;
 }
-
 
 export class UpdateDatabaseSettingsRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
@@ -51,7 +59,6 @@ export class UpdateDatabaseSettingsRequest extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "request, media_type=application/json" })
   request?: UpdateDatabaseSettingsRequestBody;
 }
-
 
 export class UpdateDatabaseSettingsResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

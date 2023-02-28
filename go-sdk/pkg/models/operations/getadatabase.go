@@ -11,6 +11,6 @@ type GetADatabaseRequest struct {
 
 type GetADatabaseResponse struct {
 	ContentType                          string
-	StatusCode                           int64
+	StatusCode                           int
 	GetADatabase200ApplicationJSONObject map[string]map[string]interface{}
 }

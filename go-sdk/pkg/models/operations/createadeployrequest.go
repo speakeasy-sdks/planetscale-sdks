@@ -19,6 +19,6 @@ type CreateADeployRequestRequest struct {
 
 type CreateADeployRequestResponse struct {
 	ContentType                                  string
-	StatusCode                                   int64
+	StatusCode                                   int
 	CreateADeployRequest200ApplicationJSONObject map[string]map[string]interface{}
 }

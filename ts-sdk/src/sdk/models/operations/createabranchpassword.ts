@@ -1,5 +1,5 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose, Type } from "class-transformer";
 
 
 export class CreateABranchPasswordPathParams extends SpeakeasyBase {
@@ -12,7 +12,6 @@ export class CreateABranchPasswordPathParams extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=organization" })
   organization: string;
 }
-
 export enum CreateABranchPasswordRequestBodyRoleEnum {
     Reader = "reader",
     Writer = "writer",
@@ -20,18 +19,19 @@ export enum CreateABranchPasswordRequestBodyRoleEnum {
     Readwriter = "readwriter"
 }
 
-
 export class CreateABranchPasswordRequestBody extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=read_only_region_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "read_only_region_id" })
   readOnlyRegionId?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=role" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "role" })
   role?: CreateABranchPasswordRequestBodyRoleEnum;
 
-  @SpeakeasyMetadata({ data: "json, name=ttl" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "ttl" })
   ttl?: number;
 }
-
 
 export class CreateABranchPasswordRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
@@ -40,7 +40,6 @@ export class CreateABranchPasswordRequest extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "request, media_type=application/json" })
   request?: CreateABranchPasswordRequestBody;
 }
-
 
 export class CreateABranchPasswordResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

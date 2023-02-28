@@ -3,28 +3,28 @@ package planetscale
 import (
 	"context"
 	"fmt"
-	"github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/pkg/models/operations"
-	"github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/pkg/utils"
+	"github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/v2/pkg/models/operations"
+	"github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/v2/pkg/utils"
 	"net/http"
 )
 
-type DatabaseBranches struct {
-	_defaultClient  HTTPClient
-	_securityClient HTTPClient
-	_serverURL      string
-	_language       string
-	_sdkVersion     string
-	_genVersion     string
+type databaseBranches struct {
+	defaultClient  HTTPClient
+	securityClient HTTPClient
+	serverURL      string
+	language       string
+	sdkVersion     string
+	genVersion     string
 }
 
-func NewDatabaseBranches(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *DatabaseBranches {
-	return &DatabaseBranches{
-		_defaultClient:  defaultClient,
-		_securityClient: securityClient,
-		_serverURL:      serverURL,
-		_language:       language,
-		_sdkVersion:     sdkVersion,
-		_genVersion:     genVersion,
+func newDatabaseBranches(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *databaseBranches {
+	return &databaseBranches{
+		defaultClient:  defaultClient,
+		securityClient: securityClient,
+		serverURL:      serverURL,
+		language:       language,
+		sdkVersion:     sdkVersion,
+		genVersion:     genVersion,
 	}
 }
 
@@ -46,8 +46,8 @@ func NewDatabaseBranches(defaultClient, securityClient HTTPClient, serverURL, la
 // | :------- | :---------- |
 // | Organization | `demote_branches` |
 // | Database | `demote_branches` |
-func (s *DatabaseBranches) CancelOrDenyADemotionRequest(ctx context.Context, request operations.CancelOrDenyADemotionRequestRequest) (*operations.CancelOrDenyADemotionRequestResponse, error) {
-	baseURL := s._serverURL
+func (s *databaseBranches) CancelOrDenyADemotionRequest(ctx context.Context, request operations.CancelOrDenyADemotionRequestRequest) (*operations.CancelOrDenyADemotionRequestResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/branches/{name}/demotion-request", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
@@ -55,18 +55,21 @@ func (s *DatabaseBranches) CancelOrDenyADemotionRequest(ctx context.Context, req
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.CancelOrDenyADemotionRequestResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -95,8 +98,8 @@ func (s *DatabaseBranches) CancelOrDenyADemotionRequest(ctx context.Context, req
 // | :------- | :---------- |
 // | Organization | `write_branches` |
 // | Database | `write_branches` |
-func (s *DatabaseBranches) CreateABranch(ctx context.Context, request operations.CreateABranchRequest) (*operations.CreateABranchResponse, error) {
-	baseURL := s._serverURL
+func (s *databaseBranches) CreateABranch(ctx context.Context, request operations.CreateABranchRequest) (*operations.CreateABranchResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/branches", request.PathParams)
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
@@ -111,18 +114,21 @@ func (s *DatabaseBranches) CreateABranch(ctx context.Context, request operations
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.CreateABranchResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -160,8 +166,8 @@ func (s *DatabaseBranches) CreateABranch(ctx context.Context, request operations
 // | :------- | :---------- |
 // | Organization | `promote_branches` |
 // | Database | `promote_branches` |
-func (s *DatabaseBranches) CreateAPromotionRequest(ctx context.Context, request operations.CreateAPromotionRequestRequest) (*operations.CreateAPromotionRequestResponse, error) {
-	baseURL := s._serverURL
+func (s *databaseBranches) CreateAPromotionRequest(ctx context.Context, request operations.CreateAPromotionRequestRequest) (*operations.CreateAPromotionRequestResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/branches/{name}/promotion-request", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
@@ -169,18 +175,21 @@ func (s *DatabaseBranches) CreateAPromotionRequest(ctx context.Context, request 
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.CreateAPromotionRequestResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -219,8 +228,8 @@ func (s *DatabaseBranches) CreateAPromotionRequest(ctx context.Context, request 
 // | Organization | `delete_branches`, `delete_production_branches` |
 // | Database | `delete_branches`, `delete_production_branches` |
 // | Branch | `delete_branch` |
-func (s *DatabaseBranches) DeleteABranch(ctx context.Context, request operations.DeleteABranchRequest) (*operations.DeleteABranchResponse, error) {
-	baseURL := s._serverURL
+func (s *databaseBranches) DeleteABranch(ctx context.Context, request operations.DeleteABranchRequest) (*operations.DeleteABranchResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/branches/{name}", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
@@ -228,18 +237,21 @@ func (s *DatabaseBranches) DeleteABranch(ctx context.Context, request operations
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.DeleteABranchResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -266,8 +278,8 @@ func (s *DatabaseBranches) DeleteABranch(ctx context.Context, request operations
 // | :------- | :---------- |
 // | Organization | `demote_branches` |
 // | Database | `demote_branches` |
-func (s *DatabaseBranches) DemoteABranch(ctx context.Context, request operations.DemoteABranchRequest) (*operations.DemoteABranchResponse, error) {
-	baseURL := s._serverURL
+func (s *databaseBranches) DemoteABranch(ctx context.Context, request operations.DemoteABranchRequest) (*operations.DemoteABranchResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/branches/{name}/demote", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
@@ -275,18 +287,21 @@ func (s *DatabaseBranches) DemoteABranch(ctx context.Context, request operations
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.DemoteABranchResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -325,8 +340,8 @@ func (s *DatabaseBranches) DemoteABranch(ctx context.Context, request operations
 // | Organization | `read_branches` |
 // | Database | `read_branches` |
 // | Branch | `read_branch` |
-func (s *DatabaseBranches) GetABranch(ctx context.Context, request operations.GetABranchRequest) (*operations.GetABranchResponse, error) {
-	baseURL := s._serverURL
+func (s *databaseBranches) GetABranch(ctx context.Context, request operations.GetABranchRequest) (*operations.GetABranchResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/branches/{name}", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -334,18 +349,21 @@ func (s *DatabaseBranches) GetABranch(ctx context.Context, request operations.Ge
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.GetABranchResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -384,8 +402,8 @@ func (s *DatabaseBranches) GetABranch(ctx context.Context, request operations.Ge
 // | Organization | `read_branches` |
 // | Database | `read_branches` |
 // | Branch | `read_branch` |
-func (s *DatabaseBranches) GetABranchSchema(ctx context.Context, request operations.GetABranchSchemaRequest) (*operations.GetABranchSchemaResponse, error) {
-	baseURL := s._serverURL
+func (s *databaseBranches) GetABranchSchema(ctx context.Context, request operations.GetABranchSchemaRequest) (*operations.GetABranchSchemaResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/branches/{name}/schema", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -393,20 +411,25 @@ func (s *DatabaseBranches) GetABranchSchema(ctx context.Context, request operati
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	utils.PopulateQueryParams(ctx, req, request.QueryParams)
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.GetABranchSchemaResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -445,8 +468,8 @@ func (s *DatabaseBranches) GetABranchSchema(ctx context.Context, request operati
 // | Organization | `read_branches` |
 // | Database | `read_branches` |
 // | Branch | `read_branch` |
-func (s *DatabaseBranches) GetADemotionRequest(ctx context.Context, request operations.GetADemotionRequestRequest) (*operations.GetADemotionRequestResponse, error) {
-	baseURL := s._serverURL
+func (s *databaseBranches) GetADemotionRequest(ctx context.Context, request operations.GetADemotionRequestRequest) (*operations.GetADemotionRequestResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/branches/{name}/demotion-request", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -454,18 +477,21 @@ func (s *DatabaseBranches) GetADemotionRequest(ctx context.Context, request oper
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.GetADemotionRequestResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -503,8 +529,8 @@ func (s *DatabaseBranches) GetADemotionRequest(ctx context.Context, request oper
 // | :------- | :---------- |
 // | Organization | `promote_branches` |
 // | Database | `promote_branches` |
-func (s *DatabaseBranches) GetAPromotionRequest(ctx context.Context, request operations.GetAPromotionRequestRequest) (*operations.GetAPromotionRequestResponse, error) {
-	baseURL := s._serverURL
+func (s *databaseBranches) GetAPromotionRequest(ctx context.Context, request operations.GetAPromotionRequestRequest) (*operations.GetAPromotionRequestResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/branches/{name}/promotion-request", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -512,18 +538,21 @@ func (s *DatabaseBranches) GetAPromotionRequest(ctx context.Context, request ope
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.GetAPromotionRequestResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -562,8 +591,8 @@ func (s *DatabaseBranches) GetAPromotionRequest(ctx context.Context, request ope
 // | Organization | `read_branches` |
 // | Database | `read_branches` |
 // | Branch | `read_branch` |
-func (s *DatabaseBranches) GetBranchStatus(ctx context.Context, request operations.GetBranchStatusRequest) (*operations.GetBranchStatusResponse, error) {
-	baseURL := s._serverURL
+func (s *databaseBranches) GetBranchStatus(ctx context.Context, request operations.GetBranchStatusRequest) (*operations.GetBranchStatusResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/branches/{name}/status", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -571,18 +600,21 @@ func (s *DatabaseBranches) GetBranchStatus(ctx context.Context, request operatio
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.GetBranchStatusResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -621,8 +653,8 @@ func (s *DatabaseBranches) GetBranchStatus(ctx context.Context, request operatio
 // | Organization | `read_branches` |
 // | Database | `read_branches` |
 // | Branch | `read_branch` |
-func (s *DatabaseBranches) ListBranches(ctx context.Context, request operations.ListBranchesRequest) (*operations.ListBranchesResponse, error) {
-	baseURL := s._serverURL
+func (s *databaseBranches) ListBranches(ctx context.Context, request operations.ListBranchesRequest) (*operations.ListBranchesResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/branches", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -630,20 +662,25 @@ func (s *DatabaseBranches) ListBranches(ctx context.Context, request operations.
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	utils.PopulateQueryParams(ctx, req, request.QueryParams)
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.ListBranchesResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {

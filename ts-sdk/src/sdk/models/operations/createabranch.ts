@@ -1,5 +1,5 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose, Type } from "class-transformer";
 
 
 export class CreateABranchPathParams extends SpeakeasyBase {
@@ -10,18 +10,19 @@ export class CreateABranchPathParams extends SpeakeasyBase {
   organization: string;
 }
 
-
 export class CreateABranchRequestBody extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=backup_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "backup_id" })
   backupId?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=name" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "name" })
   name: string;
 
-  @SpeakeasyMetadata({ data: "json, name=parent_branch" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "parent_branch" })
   parentBranch: string;
 }
-
 
 export class CreateABranchRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
@@ -30,7 +31,6 @@ export class CreateABranchRequest extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "request, media_type=application/json" })
   request?: CreateABranchRequestBody;
 }
-
 
 export class CreateABranchResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

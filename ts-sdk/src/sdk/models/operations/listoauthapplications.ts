@@ -1,12 +1,11 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Type } from "class-transformer";
 
 
 export class ListOauthApplicationsPathParams extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=organization" })
   organization: string;
 }
-
 
 export class ListOauthApplicationsQueryParams extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=page" })
@@ -16,7 +15,6 @@ export class ListOauthApplicationsQueryParams extends SpeakeasyBase {
   perPage?: number;
 }
 
-
 export class ListOauthApplicationsRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   pathParams: ListOauthApplicationsPathParams;
@@ -24,7 +22,6 @@ export class ListOauthApplicationsRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   queryParams: ListOauthApplicationsQueryParams;
 }
-
 
 export class ListOauthApplicationsResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

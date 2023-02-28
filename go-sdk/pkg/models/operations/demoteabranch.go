@@ -12,6 +12,6 @@ type DemoteABranchRequest struct {
 
 type DemoteABranchResponse struct {
 	ContentType                           string
-	StatusCode                            int64
+	StatusCode                            int
 	DemoteABranch200ApplicationJSONObject map[string]map[string]interface{}
 }

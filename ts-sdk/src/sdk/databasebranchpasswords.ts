@@ -1,6 +1,7 @@
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse, ParamsSerializerOptions } from "axios";
-import * as operations from "./models/operations";
 import * as utils from "../internal/utils";
+import * as operations from "./models/operations";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { plainToInstance } from "class-transformer";
 
 export class DatabaseBranchPasswords {
   _defaultClient: AxiosInstance;
@@ -78,7 +79,11 @@ export class DatabaseBranchPasswords {
         switch (true) {
           case httpRes?.status == 201:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.createABranchPassword201ApplicationJSONObject = httpRes?.data;
+              res.createABranchPassword201ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:
@@ -184,19 +189,12 @@ export class DatabaseBranchPasswords {
     
     const client: AxiosInstance = this._securityClient!;
     
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
-    
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -207,7 +205,11 @@ export class DatabaseBranchPasswords {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.getABranchPassword200ApplicationJSONObject = httpRes?.data;
+              res.getABranchPassword200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:
@@ -254,19 +256,12 @@ export class DatabaseBranchPasswords {
     
     const client: AxiosInstance = this._securityClient!;
     
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
-    
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -277,7 +272,11 @@ export class DatabaseBranchPasswords {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.listBranchPasswords200ApplicationJSONObject = httpRes?.data;
+              res.listBranchPasswords200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:
@@ -352,7 +351,11 @@ export class DatabaseBranchPasswords {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.renewABranchPassword200ApplicationJSONObject = httpRes?.data;
+              res.renewABranchPassword200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:
@@ -427,7 +430,11 @@ export class DatabaseBranchPasswords {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.updateABranchPassword200ApplicationJSONObject = httpRes?.data;
+              res.updateABranchPassword200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
           case httpRes?.status == 403:

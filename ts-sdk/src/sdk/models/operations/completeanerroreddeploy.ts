@@ -1,5 +1,5 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Type } from "class-transformer";
 
 
 export class CompleteAnErroredDeployPathParams extends SpeakeasyBase {
@@ -13,12 +13,10 @@ export class CompleteAnErroredDeployPathParams extends SpeakeasyBase {
   organization: string;
 }
 
-
 export class CompleteAnErroredDeployRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   pathParams: CompleteAnErroredDeployPathParams;
 }
-
 
 export class CompleteAnErroredDeployResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

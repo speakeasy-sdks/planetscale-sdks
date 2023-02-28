@@ -17,6 +17,6 @@ type GetABranchSchemaRequest struct {
 
 type GetABranchSchemaResponse struct {
 	ContentType                              string
-	StatusCode                               int64
+	StatusCode                               int
 	GetABranchSchema200ApplicationJSONObject map[string]map[string]interface{}
 }

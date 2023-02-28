@@ -28,6 +28,6 @@ type CreateOrRenewAnOauthTokenRequest struct {
 
 type CreateOrRenewAnOauthTokenResponse struct {
 	ContentType                                       string
-	StatusCode                                        int64
+	StatusCode                                        int
 	CreateOrRenewAnOauthToken200ApplicationJSONObject map[string]map[string]interface{}
 }

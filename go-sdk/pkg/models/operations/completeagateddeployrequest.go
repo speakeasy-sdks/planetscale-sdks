@@ -12,6 +12,6 @@ type CompleteAGatedDeployRequestRequest struct {
 
 type CompleteAGatedDeployRequestResponse struct {
 	ContentType                                         string
-	StatusCode                                          int64
+	StatusCode                                          int
 	CompleteAGatedDeployRequest200ApplicationJSONObject map[string]map[string]interface{}
 }

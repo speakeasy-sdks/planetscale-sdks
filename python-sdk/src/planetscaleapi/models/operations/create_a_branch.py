@@ -1,7 +1,8 @@
+from __future__ import annotations
 import dataclasses
-from typing import Any,Optional
-from dataclasses_json import dataclass_json
+from dataclasses_json import Undefined, dataclass_json
 from planetscaleapi import utils
+from typing import Any, Optional
 
 
 @dataclasses.dataclass
@@ -10,12 +11,12 @@ class CreateABranchPathParams:
     organization: str = dataclasses.field(metadata={'path_param': { 'field_name': 'organization', 'style': 'simple', 'explode': False }})
     
 
-@dataclass_json
+@dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class CreateABranchRequestBody:
     name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('name') }})
     parent_branch: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('parent_branch') }})
-    backup_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('backup_id') }})
+    backup_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('backup_id'), 'exclude': lambda f: f is None }})
     
 
 @dataclasses.dataclass

@@ -1,5 +1,5 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Type } from "class-transformer";
 
 
 export class GetAPromotionRequestPathParams extends SpeakeasyBase {
@@ -13,12 +13,10 @@ export class GetAPromotionRequestPathParams extends SpeakeasyBase {
   organization: string;
 }
 
-
 export class GetAPromotionRequestRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   pathParams: GetAPromotionRequestPathParams;
 }
-
 
 export class GetAPromotionRequestResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

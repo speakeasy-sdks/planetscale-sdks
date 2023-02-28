@@ -1,16 +1,14 @@
-import axios, { AxiosInstance } from "axios";
 import * as utils from "../internal/utils";
-import { Security } from "./models/shared";
-
-import { DatabaseBranchPasswords } from "./databasebranchpasswords";
 import { DatabaseBranches } from "./databasebranches";
+import { DatabaseBranchPasswords } from "./databasebranchpasswords";
 import { Databases } from "./databases";
 import { DeployRequests } from "./deployrequests";
+import * as shared from "./models/shared";
 import { OAuthApplications } from "./oauthapplications";
 import { OAuthTokens } from "./oauthtokens";
 import { Organizations } from "./organizations";
 import { Users } from "./users";
-
+import axios, { AxiosInstance } from "axios";
 
 export const ServerList = [
 	"https://api.planetscale.com/v1",
@@ -21,13 +19,13 @@ export const ServerList = [
 export type SDKProps = {
   defaultClient?: AxiosInstance;
 
-  security?: Security;
+  security?: shared.Security;
 
   serverUrl?: string;
 }
 
 
-export class PlanetscaleApi {
+export class PlanetscaleAPI {
   public databaseBranchPasswords: DatabaseBranchPasswords;
   public databaseBranches: DatabaseBranches;
   public databases: Databases;
@@ -41,17 +39,17 @@ export class PlanetscaleApi {
   public _securityClient: AxiosInstance;
   public _serverURL: string;
   private _language = "typescript";
-  private _sdkVersion = "1.1.1";
-  private _genVersion = "0.21.3";
+  private _sdkVersion = "2.5.2";
+  private _genVersion = "1.5.4";
 
   constructor(props: SDKProps) {
     this._serverURL = props.serverUrl ?? ServerList[0];
 
     this._defaultClient = props.defaultClient ?? axios.create({ baseURL: this._serverURL });
     if (props.security) {
-      let security: Security = props.security;
+      let security: shared.Security = props.security;
       if (!(props.security instanceof utils.SpeakeasyBase))
-        security = new Security(props.security);
+        security = new shared.Security(props.security);
       this._securityClient = utils.createSecurityClient(
         this._defaultClient,
         security
@@ -132,4 +130,5 @@ export class PlanetscaleApi {
       this._genVersion
     );
   }
+  
 }

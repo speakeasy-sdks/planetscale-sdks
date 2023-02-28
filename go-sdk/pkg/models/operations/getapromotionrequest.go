@@ -12,6 +12,6 @@ type GetAPromotionRequestRequest struct {
 
 type GetAPromotionRequestResponse struct {
 	ContentType                                  string
-	StatusCode                                   int64
+	StatusCode                                   int
 	GetAPromotionRequest200ApplicationJSONObject map[string]map[string]interface{}
 }

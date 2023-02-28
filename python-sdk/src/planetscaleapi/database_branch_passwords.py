@@ -1,7 +1,7 @@
 import requests
-from typing import Any,Optional
-from planetscaleapi.models import operations
 from . import utils
+from planetscaleapi.models import operations
+from typing import Optional
 
 class DatabaseBranchPasswords:
     _client: requests.Session
@@ -43,13 +43,13 @@ class DatabaseBranchPasswords:
         url = utils.generate_url(base_url, "/organizations/{organization}/databases/{database}/branches/{branch}/passwords", request.path_params)
         
         headers = {}
-        req_content_type, data, json, files = utils.serialize_request_body(request)
+        req_content_type, data, form = utils.serialize_request_body(request)
         if req_content_type != "multipart/form-data" and req_content_type != "multipart/mixed":
             headers["content-type"] = req_content_type
         
         client = self._security_client
         
-        r = client.request("POST", url, data=data, json=json, files=files, headers=headers)
+        r = client.request("POST", url, data=data, files=form, headers=headers)
         content_type = r.headers.get("Content-Type")
 
         res = operations.CreateABranchPasswordResponse(status_code=r.status_code, content_type=content_type)
@@ -223,13 +223,13 @@ class DatabaseBranchPasswords:
         url = utils.generate_url(base_url, "/organizations/{organization}/databases/{database}/branches/{branch}/passwords/{id}/renew", request.path_params)
         
         headers = {}
-        req_content_type, data, json, files = utils.serialize_request_body(request)
+        req_content_type, data, form = utils.serialize_request_body(request)
         if req_content_type != "multipart/form-data" and req_content_type != "multipart/mixed":
             headers["content-type"] = req_content_type
         
         client = self._security_client
         
-        r = client.request("POST", url, data=data, json=json, files=files, headers=headers)
+        r = client.request("POST", url, data=data, files=form, headers=headers)
         content_type = r.headers.get("Content-Type")
 
         res = operations.RenewABranchPasswordResponse(status_code=r.status_code, content_type=content_type)
@@ -271,13 +271,13 @@ class DatabaseBranchPasswords:
         url = utils.generate_url(base_url, "/organizations/{organization}/databases/{database}/branches/{branch}/passwords/{id}", request.path_params)
         
         headers = {}
-        req_content_type, data, json, files = utils.serialize_request_body(request)
+        req_content_type, data, form = utils.serialize_request_body(request)
         if req_content_type != "multipart/form-data" and req_content_type != "multipart/mixed":
             headers["content-type"] = req_content_type
         
         client = self._security_client
         
-        r = client.request("PATCH", url, data=data, json=json, files=files, headers=headers)
+        r = client.request("PATCH", url, data=data, files=form, headers=headers)
         content_type = r.headers.get("Content-Type")
 
         res = operations.UpdateABranchPasswordResponse(status_code=r.status_code, content_type=content_type)

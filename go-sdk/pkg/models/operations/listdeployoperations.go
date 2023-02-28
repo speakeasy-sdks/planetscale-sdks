@@ -18,6 +18,6 @@ type ListDeployOperationsRequest struct {
 
 type ListDeployOperationsResponse struct {
 	ContentType                                  string
-	StatusCode                                   int64
+	StatusCode                                   int
 	ListDeployOperations200ApplicationJSONObject map[string]map[string]interface{}
 }

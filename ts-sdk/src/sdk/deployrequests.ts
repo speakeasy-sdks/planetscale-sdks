@@ -1,6 +1,7 @@
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse, ParamsSerializerOptions } from "axios";
-import * as operations from "./models/operations";
 import * as utils from "../internal/utils";
+import * as operations from "./models/operations";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { plainToInstance } from "class-transformer";
 
 export class DeployRequests {
   _defaultClient: AxiosInstance;
@@ -64,7 +65,11 @@ export class DeployRequests {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.cancelAQueuedDeployRequest200ApplicationJSONObject = httpRes?.data;
+              res.cancelAQueuedDeployRequest200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -132,7 +137,11 @@ export class DeployRequests {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.closeADeployRequest200ApplicationJSONObject = httpRes?.data;
+              res.closeADeployRequest200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -187,7 +196,11 @@ export class DeployRequests {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.completeAGatedDeployRequest200ApplicationJSONObject = httpRes?.data;
+              res.completeAGatedDeployRequest200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -242,7 +255,11 @@ export class DeployRequests {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.completeARevert200ApplicationJSONObject = httpRes?.data;
+              res.completeARevert200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -297,7 +314,11 @@ export class DeployRequests {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.completeAnErroredDeploy200ApplicationJSONObject = httpRes?.data;
+              res.completeAnErroredDeploy200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -365,7 +386,11 @@ export class DeployRequests {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.createADeployRequest200ApplicationJSONObject = httpRes?.data;
+              res.createADeployRequest200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -411,7 +436,11 @@ export class DeployRequests {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.getADeployQueue200ApplicationJSONObject = httpRes?.data;
+              res.getADeployQueue200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -466,7 +495,11 @@ export class DeployRequests {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.getADeployRequest200ApplicationJSONObject = httpRes?.data;
+              res.getADeployRequest200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -523,7 +556,11 @@ export class DeployRequests {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.getADeployment200ApplicationJSONObject = httpRes?.data;
+              res.getADeployment200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -565,19 +602,12 @@ export class DeployRequests {
     
     const client: AxiosInstance = this._securityClient!;
     
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
-    
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -588,7 +618,11 @@ export class DeployRequests {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.listDeployOperations200ApplicationJSONObject = httpRes?.data;
+              res.listDeployOperations200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -630,19 +664,12 @@ export class DeployRequests {
     
     const client: AxiosInstance = this._securityClient!;
     
-    const qpSerializer: ParamsSerializerOptions = utils.getQueryParamSerializer(req.queryParams);
-
-    const requestConfig: AxiosRequestConfig = {
-      ...config,
-      params: req.queryParams,
-      paramsSerializer: qpSerializer,
-    };
-    
+    const queryParams: string = utils.serializeQueryParams(req.queryParams);
     
     const r = client.request({
-      url: url,
+      url: url + queryParams,
       method: "get",
-      ...requestConfig,
+      ...config,
     });
     
     return r.then((httpRes: AxiosResponse) => {
@@ -653,7 +680,11 @@ export class DeployRequests {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.listDeployRequests200ApplicationJSONObject = httpRes?.data;
+              res.listDeployRequests200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -708,7 +739,11 @@ export class DeployRequests {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.queueADeployRequest200ApplicationJSONObject = httpRes?.data;
+              res.queueADeployRequest200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -765,7 +800,11 @@ export class DeployRequests {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.skipRevertPeriod200ApplicationJSONObject = httpRes?.data;
+              res.skipRevertPeriod200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }
@@ -822,7 +861,11 @@ export class DeployRequests {
         switch (true) {
           case httpRes?.status == 200:
             if (utils.matchContentType(contentType, `application/json`)) {
-                res.updateAutoApplyForDeployRequest200ApplicationJSONObject = httpRes?.data;
+              res.updateAutoApplyForDeployRequest200ApplicationJSONObject = plainToInstance(
+                ,
+                httpRes?.data as ,
+                { excludeExtraneousValues: true }
+              );
             }
             break;
         }

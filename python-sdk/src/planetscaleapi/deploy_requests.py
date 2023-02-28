@@ -1,7 +1,7 @@
 import requests
-from typing import Any,Optional
-from planetscaleapi.models import operations
 from . import utils
+from planetscaleapi.models import operations
+from typing import Optional
 
 class DeployRequests:
     _client: requests.Session
@@ -79,13 +79,13 @@ class DeployRequests:
         url = utils.generate_url(base_url, "/organizations/{organization}/databases/{database}/deploy-requests/{number}", request.path_params)
         
         headers = {}
-        req_content_type, data, json, files = utils.serialize_request_body(request)
+        req_content_type, data, form = utils.serialize_request_body(request)
         if req_content_type != "multipart/form-data" and req_content_type != "multipart/mixed":
             headers["content-type"] = req_content_type
         
         client = self._security_client
         
-        r = client.request("PATCH", url, data=data, json=json, files=files, headers=headers)
+        r = client.request("PATCH", url, data=data, files=form, headers=headers)
         content_type = r.headers.get("Content-Type")
 
         res = operations.CloseADeployRequestResponse(status_code=r.status_code, content_type=content_type)
@@ -231,13 +231,13 @@ class DeployRequests:
         url = utils.generate_url(base_url, "/organizations/{organization}/databases/{database}/deploy-requests", request.path_params)
         
         headers = {}
-        req_content_type, data, json, files = utils.serialize_request_body(request)
+        req_content_type, data, form = utils.serialize_request_body(request)
         if req_content_type != "multipart/form-data" and req_content_type != "multipart/mixed":
             headers["content-type"] = req_content_type
         
         client = self._security_client
         
-        r = client.request("POST", url, data=data, json=json, files=files, headers=headers)
+        r = client.request("POST", url, data=data, files=form, headers=headers)
         content_type = r.headers.get("Content-Type")
 
         res = operations.CreateADeployRequestResponse(status_code=r.status_code, content_type=content_type)

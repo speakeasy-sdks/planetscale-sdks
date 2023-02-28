@@ -16,6 +16,6 @@ type ListRegionsForAnOrganizationRequest struct {
 
 type ListRegionsForAnOrganizationResponse struct {
 	ContentType                                          string
-	StatusCode                                           int64
+	StatusCode                                           int
 	ListRegionsForAnOrganization200ApplicationJSONObject map[string]map[string]interface{}
 }

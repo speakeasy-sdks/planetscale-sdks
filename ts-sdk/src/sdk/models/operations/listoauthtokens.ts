@@ -1,5 +1,5 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Type } from "class-transformer";
 
 
 export class ListOauthTokensPathParams extends SpeakeasyBase {
@@ -10,7 +10,6 @@ export class ListOauthTokensPathParams extends SpeakeasyBase {
   organization: string;
 }
 
-
 export class ListOauthTokensQueryParams extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=page" })
   page?: number;
@@ -19,7 +18,6 @@ export class ListOauthTokensQueryParams extends SpeakeasyBase {
   perPage?: number;
 }
 
-
 export class ListOauthTokensRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   pathParams: ListOauthTokensPathParams;
@@ -27,7 +25,6 @@ export class ListOauthTokensRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   queryParams: ListOauthTokensQueryParams;
 }
-
 
 export class ListOauthTokensResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

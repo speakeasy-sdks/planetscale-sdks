@@ -12,6 +12,6 @@ type SkipRevertPeriodRequest struct {
 
 type SkipRevertPeriodResponse struct {
 	ContentType                              string
-	StatusCode                               int64
+	StatusCode                               int
 	SkipRevertPeriod200ApplicationJSONObject map[string]map[string]interface{}
 }

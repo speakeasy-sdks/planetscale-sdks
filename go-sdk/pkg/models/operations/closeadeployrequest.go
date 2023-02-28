@@ -23,6 +23,6 @@ type CloseADeployRequestRequest struct {
 
 type CloseADeployRequestResponse struct {
 	ContentType                                 string
-	StatusCode                                  int64
+	StatusCode                                  int
 	CloseADeployRequest200ApplicationJSONObject map[string]map[string]interface{}
 }

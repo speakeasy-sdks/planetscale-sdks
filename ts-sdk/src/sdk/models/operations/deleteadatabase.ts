@@ -1,5 +1,5 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Type } from "class-transformer";
 
 
 export class DeleteADatabasePathParams extends SpeakeasyBase {
@@ -10,12 +10,10 @@ export class DeleteADatabasePathParams extends SpeakeasyBase {
   organization: string;
 }
 
-
 export class DeleteADatabaseRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   pathParams: DeleteADatabasePathParams;
 }
-
 
 export class DeleteADatabaseResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

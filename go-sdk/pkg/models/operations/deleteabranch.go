@@ -12,5 +12,5 @@ type DeleteABranchRequest struct {
 
 type DeleteABranchResponse struct {
 	ContentType string
-	StatusCode  int64
+	StatusCode  int
 }

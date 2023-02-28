@@ -1,7 +1,8 @@
+from __future__ import annotations
 import dataclasses
-from typing import Any,Optional
-from dataclasses_json import dataclass_json
+from dataclasses_json import Undefined, dataclass_json
 from planetscaleapi import utils
+from typing import Any, Optional
 
 
 @dataclasses.dataclass
@@ -12,10 +13,10 @@ class RenewABranchPasswordPathParams:
     organization: str = dataclasses.field(metadata={'path_param': { 'field_name': 'organization', 'style': 'simple', 'explode': False }})
     
 
-@dataclass_json
+@dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class RenewABranchPasswordRequestBody:
-    read_only_region_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('read_only_region_id') }})
+    read_only_region_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('read_only_region_id'), 'exclude': lambda f: f is None }})
     
 
 @dataclasses.dataclass

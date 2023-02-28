@@ -1,5 +1,5 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Expose, Type } from "class-transformer";
 
 
 export class CreateOrRenewAnOauthTokenPathParams extends SpeakeasyBase {
@@ -9,33 +9,36 @@ export class CreateOrRenewAnOauthTokenPathParams extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=organization" })
   organization: string;
 }
-
 export enum CreateOrRenewAnOauthTokenRequestBodyGrantTypeEnum {
     AuthorizationCode = "authorization_code",
     RefreshToken = "refresh_token"
 }
 
-
 export class CreateOrRenewAnOauthTokenRequestBody extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "json, name=client_id" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "client_id" })
   clientId: string;
 
-  @SpeakeasyMetadata({ data: "json, name=client_secret" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "client_secret" })
   clientSecret: string;
 
-  @SpeakeasyMetadata({ data: "json, name=code" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "code" })
   code?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=grant_type" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "grant_type" })
   grantType: CreateOrRenewAnOauthTokenRequestBodyGrantTypeEnum;
 
-  @SpeakeasyMetadata({ data: "json, name=redirect_uri" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "redirect_uri" })
   redirectUri?: string;
 
-  @SpeakeasyMetadata({ data: "json, name=refresh_token" })
+  @SpeakeasyMetadata()
+  @Expose({ name: "refresh_token" })
   refreshToken?: string;
 }
-
 
 export class CreateOrRenewAnOauthTokenRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
@@ -44,7 +47,6 @@ export class CreateOrRenewAnOauthTokenRequest extends SpeakeasyBase {
   @SpeakeasyMetadata({ data: "request, media_type=application/json" })
   request?: CreateOrRenewAnOauthTokenRequestBody;
 }
-
 
 export class CreateOrRenewAnOauthTokenResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

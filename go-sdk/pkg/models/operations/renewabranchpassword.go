@@ -18,6 +18,6 @@ type RenewABranchPasswordRequest struct {
 
 type RenewABranchPasswordResponse struct {
 	ContentType                                  string
-	StatusCode                                   int64
+	StatusCode                                   int
 	RenewABranchPassword200ApplicationJSONObject map[string]map[string]interface{}
 }

@@ -3,37 +3,37 @@ package planetscale
 import (
 	"context"
 	"fmt"
-	"github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/pkg/models/operations"
-	"github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/pkg/utils"
+	"github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/v2/pkg/models/operations"
+	"github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/v2/pkg/utils"
 	"net/http"
 	"strings"
 )
 
-type Users struct {
-	_defaultClient  HTTPClient
-	_securityClient HTTPClient
-	_serverURL      string
-	_language       string
-	_sdkVersion     string
-	_genVersion     string
+type users struct {
+	defaultClient  HTTPClient
+	securityClient HTTPClient
+	serverURL      string
+	language       string
+	sdkVersion     string
+	genVersion     string
 }
 
-func NewUsers(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *Users {
-	return &Users{
-		_defaultClient:  defaultClient,
-		_securityClient: securityClient,
-		_serverURL:      serverURL,
-		_language:       language,
-		_sdkVersion:     sdkVersion,
-		_genVersion:     genVersion,
+func newUsers(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *users {
+	return &users{
+		defaultClient:  defaultClient,
+		securityClient: securityClient,
+		serverURL:      serverURL,
+		language:       language,
+		sdkVersion:     sdkVersion,
+		genVersion:     genVersion,
 	}
 }
 
 // GetCurrentUser - Get current user
 //
 // <p>Get the user associated with this service token</p>
-func (s *Users) GetCurrentUser(ctx context.Context) (*operations.GetCurrentUserResponse, error) {
-	baseURL := s._serverURL
+func (s *users) GetCurrentUser(ctx context.Context) (*operations.GetCurrentUserResponse, error) {
+	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/user"
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -41,18 +41,21 @@ func (s *Users) GetCurrentUser(ctx context.Context) (*operations.GetCurrentUserR
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.GetCurrentUserResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {

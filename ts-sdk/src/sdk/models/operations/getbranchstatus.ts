@@ -1,5 +1,5 @@
-import { SpeakeasyMetadata, SpeakeasyBase } from "../../../internal/utils";
-
+import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import { Type } from "class-transformer";
 
 
 export class GetBranchStatusPathParams extends SpeakeasyBase {
@@ -13,12 +13,10 @@ export class GetBranchStatusPathParams extends SpeakeasyBase {
   organization: string;
 }
 
-
 export class GetBranchStatusRequest extends SpeakeasyBase {
   @SpeakeasyMetadata()
   pathParams: GetBranchStatusPathParams;
 }
-
 
 export class GetBranchStatusResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()

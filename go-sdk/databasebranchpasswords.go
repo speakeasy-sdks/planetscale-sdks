@@ -3,28 +3,28 @@ package planetscale
 import (
 	"context"
 	"fmt"
-	"github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/pkg/models/operations"
-	"github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/pkg/utils"
+	"github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/v2/pkg/models/operations"
+	"github.com/speakeasy-sdks/planetscale-sdks/go-client-sdk/v2/pkg/utils"
 	"net/http"
 )
 
-type DatabaseBranchPasswords struct {
-	_defaultClient  HTTPClient
-	_securityClient HTTPClient
-	_serverURL      string
-	_language       string
-	_sdkVersion     string
-	_genVersion     string
+type databaseBranchPasswords struct {
+	defaultClient  HTTPClient
+	securityClient HTTPClient
+	serverURL      string
+	language       string
+	sdkVersion     string
+	genVersion     string
 }
 
-func NewDatabaseBranchPasswords(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *DatabaseBranchPasswords {
-	return &DatabaseBranchPasswords{
-		_defaultClient:  defaultClient,
-		_securityClient: securityClient,
-		_serverURL:      serverURL,
-		_language:       language,
-		_sdkVersion:     sdkVersion,
-		_genVersion:     genVersion,
+func newDatabaseBranchPasswords(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *databaseBranchPasswords {
+	return &databaseBranchPasswords{
+		defaultClient:  defaultClient,
+		securityClient: securityClient,
+		serverURL:      serverURL,
+		language:       language,
+		sdkVersion:     sdkVersion,
+		genVersion:     genVersion,
 	}
 }
 
@@ -45,8 +45,8 @@ func NewDatabaseBranchPasswords(defaultClient, securityClient HTTPClient, server
 // | Organization | `manage_passwords` |
 // | Database | `manage_passwords` |
 // | Branch | `manage_passwords` |
-func (s *DatabaseBranchPasswords) CreateABranchPassword(ctx context.Context, request operations.CreateABranchPasswordRequest) (*operations.CreateABranchPasswordResponse, error) {
-	baseURL := s._serverURL
+func (s *databaseBranchPasswords) CreateABranchPassword(ctx context.Context, request operations.CreateABranchPasswordRequest) (*operations.CreateABranchPasswordResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/branches/{branch}/passwords", request.PathParams)
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
@@ -61,18 +61,21 @@ func (s *DatabaseBranchPasswords) CreateABranchPassword(ctx context.Context, req
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.CreateABranchPasswordResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -111,8 +114,8 @@ func (s *DatabaseBranchPasswords) CreateABranchPassword(ctx context.Context, req
 // | Organization | `manage_passwords`, `manage_production_branch_passwords` |
 // | Database | `manage_passwords`, `manage_production_branch_passwords` |
 // | Branch | `manage_passwords` |
-func (s *DatabaseBranchPasswords) DeleteABranchPassword(ctx context.Context, request operations.DeleteABranchPasswordRequest) (*operations.DeleteABranchPasswordResponse, error) {
-	baseURL := s._serverURL
+func (s *databaseBranchPasswords) DeleteABranchPassword(ctx context.Context, request operations.DeleteABranchPasswordRequest) (*operations.DeleteABranchPasswordResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/branches/{branch}/passwords/{id}", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
@@ -120,18 +123,21 @@ func (s *DatabaseBranchPasswords) DeleteABranchPassword(ctx context.Context, req
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.DeleteABranchPasswordResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -161,8 +167,8 @@ func (s *DatabaseBranchPasswords) DeleteABranchPassword(ctx context.Context, req
 // | Organization | `manage_passwords` |
 // | Database | `manage_passwords` |
 // | Branch | `manage_passwords` |
-func (s *DatabaseBranchPasswords) GetABranchPassword(ctx context.Context, request operations.GetABranchPasswordRequest) (*operations.GetABranchPasswordResponse, error) {
-	baseURL := s._serverURL
+func (s *databaseBranchPasswords) GetABranchPassword(ctx context.Context, request operations.GetABranchPasswordRequest) (*operations.GetABranchPasswordResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/branches/{branch}/passwords/{id}", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -170,20 +176,25 @@ func (s *DatabaseBranchPasswords) GetABranchPassword(ctx context.Context, reques
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	utils.PopulateQueryParams(ctx, req, request.QueryParams)
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.GetABranchPasswordResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -222,8 +233,8 @@ func (s *DatabaseBranchPasswords) GetABranchPassword(ctx context.Context, reques
 // | Organization | `manage_passwords` |
 // | Database | `manage_passwords` |
 // | Branch | `manage_passwords` |
-func (s *DatabaseBranchPasswords) ListBranchPasswords(ctx context.Context, request operations.ListBranchPasswordsRequest) (*operations.ListBranchPasswordsResponse, error) {
-	baseURL := s._serverURL
+func (s *databaseBranchPasswords) ListBranchPasswords(ctx context.Context, request operations.ListBranchPasswordsRequest) (*operations.ListBranchPasswordsResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/branches/{branch}/passwords", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -231,20 +242,25 @@ func (s *DatabaseBranchPasswords) ListBranchPasswords(ctx context.Context, reque
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	utils.PopulateQueryParams(ctx, req, request.QueryParams)
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.ListBranchPasswordsResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -283,8 +299,8 @@ func (s *DatabaseBranchPasswords) ListBranchPasswords(ctx context.Context, reque
 // | Organization | `manage_passwords` |
 // | Database | `manage_passwords` |
 // | Branch | `manage_passwords` |
-func (s *DatabaseBranchPasswords) RenewABranchPassword(ctx context.Context, request operations.RenewABranchPasswordRequest) (*operations.RenewABranchPasswordResponse, error) {
-	baseURL := s._serverURL
+func (s *databaseBranchPasswords) RenewABranchPassword(ctx context.Context, request operations.RenewABranchPasswordRequest) (*operations.RenewABranchPasswordResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/branches/{branch}/passwords/{id}/renew", request.PathParams)
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
@@ -299,18 +315,21 @@ func (s *DatabaseBranchPasswords) RenewABranchPassword(ctx context.Context, requ
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.RenewABranchPasswordResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -349,8 +368,8 @@ func (s *DatabaseBranchPasswords) RenewABranchPassword(ctx context.Context, requ
 // | Organization | `manage_passwords` |
 // | Database | `manage_passwords` |
 // | Branch | `manage_passwords` |
-func (s *DatabaseBranchPasswords) UpdateABranchPassword(ctx context.Context, request operations.UpdateABranchPasswordRequest) (*operations.UpdateABranchPasswordResponse, error) {
-	baseURL := s._serverURL
+func (s *databaseBranchPasswords) UpdateABranchPassword(ctx context.Context, request operations.UpdateABranchPasswordRequest) (*operations.UpdateABranchPasswordResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/organizations/{organization}/databases/{database}/branches/{branch}/passwords/{id}", request.PathParams)
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
@@ -365,18 +384,21 @@ func (s *DatabaseBranchPasswords) UpdateABranchPassword(ctx context.Context, req
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.UpdateABranchPasswordResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
